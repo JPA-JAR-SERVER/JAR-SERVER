@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>검색 목록</title>
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/main/header.css">
+    <link rel="stylesheet" href="/css/main/footer.css">
+    <link rel="icon" href="/image/logo/favicon.png">
+    <link rel="stylesheet" href="/css/board/proposal/modify-list.css">
+    <style>
+        @media (min-width: 1024px) {
+            .content-li {
+                width: 33.333333%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<div>
+    <th:block th:replace="~{main/header :: header}"></th:block>
+
+    <div class="list-wrap">
+        <div class="list-container">
+            <div style="position: relative;">
+                <div class="list-title-box">
+                    <div class="list-title-layout">
+                        <h2 class="list-title">단체 챌린지 게시판 목록</h2>
+                        <div class="list-sub-title">하고싶은 챌린지를 선택해보세요.</div>
+                    </div>
+                </div>
+                <div class="list-content-box">
+                    <section class="list-content-wrap">
+                        <div class="popularity-button-box">
+                            <a class="btn recent active" th:href="@{/board/challenge/group/list}">더보기</a>
+                        </div>
+                        <div>
+                            <div style="height:auto; overflow:auto" >
+                                <div style="overflow:hidden">
+                                    <ul class="content-ul group-challenge-ul">
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <div class="list-title-box">
+                    <div class="list-title-layout">
+                        <h2 class="list-title">제안 게시판 목록</h2>
+                        <div class="list-sub-title">하고싶은 챌린지를 제안해보세요.</div>
+                    </div>
+                </div>
+                <div class="list-content-box">
+                    <section class="list-content-wrap">
+                        <div class="popularity-button-box">
+                            <a class="btn recent active" th:href="@{/board/suggest/list}">더보기</a>
+                        </div>
+                        <div>
+                            <div style="height:auto; overflow:auto">
+                                <div style="overflow:hidden">
+                                    <ul class="content-ul suggest-ul">
+                                        <!--suggestDTO-->
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <th:block th:replace="~{main/footer :: footer}"></th:block>
+</div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script th:inline="javascript">
+    let member = [[${session.member}]];
+    let memberFile = [[${memberDTO.fileDTO}]];
+    let memberId;
+    if (member) {
+        memberId = member.id;
+    }
+
+    $(".btn").each((i, e) => {
+
+        $(e).click(() => {
+            if (!$(e).hasClass("active")) {
+                $(".btn").removeClass("active");
+                $(e).addClass("active");
+            } else {
+                $(e).removeClass("active");
+            }
+        });
+    });
+    const $ul = $(".suggest-ul");
+    const groupChallengeDTO = [[${groupChallengeDTOS}]];
+    const suggestDTO = [[${suggestDTOS}]];
+
+</script>
+<script src="/js/main/search-list.js"></script>
+<script src="/js/board/suggest/like-service.js"></script>
+<script src="/js/board/suggest/like-button.js"></script>
+<script>
+    heartCheck(suggestDTO);
+    function heartCheck(suggestDTOS) {
+        suggestDTOS.forEach((suggestDTO, i) => {
+            let likeDTO = new Object();
+            likeDTO.memberId = memberId;
+            likeDTO.boardId = suggestDTO.id;
+
+            likeService.heartCheck(likeDTO,function(result){
+                if(result){
+                    $($(".heart-up")[i]).hide();
+                    $($(".no-heart")[i]).show();
+                    $($(".no-heart")[i]).removeClass("heart-active");
+                }else {
+                    $($(".no-heart")[i]).addClass("heart-active");
+                    $($(".heart-up")[i]).show();
+                    $($(".no-heart")[i]).hide();
+                }
+            });
+        })
+    }
+</script>
+<script src="/js/main/header.js"></script>
+</html>

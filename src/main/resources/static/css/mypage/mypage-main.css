@@ -1,0 +1,484 @@
+@charset "utf-8";
+
+button {
+    cursor: pointer;
+}
+
+label {
+    cursor: pointer;
+}
+
+.mypage-all-wrap {
+    margin-left: 24px;
+    margin-right: 24px
+}
+
+.mypage-content-wrap {
+    display: flex;
+    padding-bottom: 64px;
+}
+
+.mypage-content-container {
+    flex: 1 1 0%;
+    min-width: 0px;
+}
+
+.title {
+    font-size: 18px;
+}
+
+.mypage-content-box {
+    display: flex;
+    padding-top: 24px;
+    align-items: stretch;
+    flex-direction: column;
+}
+
+.content-title-box {
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-center {
+    display: flex;
+    align-items: center;
+}
+
+.content-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: rgb(26, 26, 26);
+    line-height: 28px;
+    margin: 0px;
+}
+
+.no-content-box {
+    border-radius: 0px;
+    width: 100%;
+    height: 150px;
+}
+
+.no-content-layout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    flex-direction: column;
+}
+
+.no-content-box-layout p {
+    border-width: 0px;
+    color: #0c0c0c;
+    margin: 0px;
+    padding: 0px;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.125rem;
+}
+
+.diary-list-box {
+    border-bottom: 1px solid #e1e1e1;
+}
+
+.diary-list-layout {
+    margin: 30px 0px;
+    padding: 0px 16px;
+}
+
+.diary-title-box {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.delete-modify-button-box {
+    display: flex;
+    justify-content: end;
+    margin-bottom: 10px;
+}
+
+.delete-modify-button-box button:last-child {
+    margin-left: 5px;
+}
+
+.diary-content {
+    white-space: break-spaces;
+    word-break: break-all;
+    overflow: hidden;
+}
+
+.toastui-calendar-grid-selection {
+    display: none;
+}
+
+.toastui-calendar-month span div {
+    color: #fff;
+}
+
+.diary-modal {
+    position: absolute;
+    inset: 0px;
+    z-index: 10000;
+}
+
+.modal-back {
+    background-color: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    inset: 0px;
+    display: block;
+    z-index: 5000;
+    animation: 0.25s ease 0s 1 normal none running openOverlay;
+    opacity: 1.1;
+}
+
+.diary-modal-box {
+    padding: 24px;
+    position: fixed;
+    overflow-y: auto;
+    z-index: 5001;
+    background: rgb(255, 255, 255);
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 3px 6px 0px, rgba(0, 0, 0, 0.12) 0px 8px 16px 0px;
+}
+
+.diary-main-title {
+    display: flex;
+}
+
+.exit-icon {
+    cursor: pointer;
+}
+
+.input-box {
+    border: 1px solid #e1e1e1;
+    width: 100%;
+    margin: 10px 0;
+}
+
+.align-flex {
+    margin: 0 20px;
+    font-size: 20px;
+    border-bottom: 1px solid #e1e1e1;
+}
+
+
+.diary-title {
+    width: 100%;
+    height: 40px;
+    font-size: 15px;
+}
+
+textarea {
+    outline: none;
+    resize: none;
+    width: 100%;
+    border: none;
+    overflow: hidden;
+}
+
+.diary-content-box {
+    margin: 10px 20px;
+}
+
+.diary-content {
+    font-size: 16px;
+    height: 250px;
+}
+
+.date {
+    margin-top: 10px;
+}
+
+.btn {
+    border-radius: 25px;
+    border: 1px solid #ddd;
+    font-size: 12px;
+    color: #333;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+div.toastui-calendar-template-monthDayName {
+    color: #fff;
+}
+
+.calendar-year {
+    font-size: 20px;
+    font-weight: bold;
+    color: rgb(26, 26, 26);
+    line-height: 28px;
+    margin: 0px;
+}
+
+.btn-padding {
+    padding: 5px;
+}
+
+.btn-padding p {
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.calendar-box {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    justify-content: space-between;
+}
+
+
+.box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.flex-box {
+    margin-top: 10px;
+    display: flex;
+}
+
+.insert-button {
+    border-radius: 5px;
+    background-color: #f1f1f1;
+    width: 80px;
+    height: 25px;
+    font-size: 11px;
+    color: #0c0c0c;
+    font-weight: bold;
+}
+
+.file-image-box {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    border-radius: 5px;
+    background-color: #BEEBFD;
+    width: 80px;
+    height: 25px;
+    padding: 0 7px;
+    font-weight: bold;
+    font-size: 11px;
+    justify-content: center;
+}
+
+.private-check-box {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    border-radius: 5px;
+    background-color: #f1f1f1;
+    width: 80px;
+    height: 25px;
+    padding: 0 7px;
+    font-weight: bold;
+    font-size: 11px;
+    justify-content: center;
+}
+
+.check-active {
+    background-color: #ddeeff;
+}
+
+.private-check-layout {
+    padding: 5px;
+}
+
+.file-image-box img {
+    width: 13px;
+    margin-right: 7px;
+}
+
+textarea::placeholder {
+    font-weight: 600;
+}
+
+input::placeholder {
+    font-weight: 600;
+}
+
+.attachment-layout {
+    display: flex;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 0 20px;
+    flex-wrap: wrap;
+}
+
+.sumnail-layout {
+    display: flex;
+    width: 100%;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.attachment-layout li {
+    margin-right: 5px;
+}
+
+.sumnail-layout li {
+    margin-top: 5px;
+    width: 216px;
+    height: 167px;
+}
+
+.attachment-layout li:last-child {
+    margin-right: 0;
+}
+
+.sumnail-layout li:last-child {
+    margin-right: 0;
+}
+
+.attachment-layout img {
+    width: 100%;
+}
+
+.sumnail-layout img {
+    object-fit: cover;
+    width: 100%;
+}
+
+.attachment-layout img:last-child {
+    margin-right: 0px;
+}
+
+.sumnail-layout img:last-child {
+    margin-right: 0px;
+}
+
+.diary-detail-display {
+    display: none;
+}
+
+.diary-detail-title-box {
+    margin-top: 30px;
+}
+
+.diary-detail-modify-box {
+    display: flex;
+}
+
+.img_box_wrapper {
+    position: relative;
+}
+
+.delete_button_wrapper {
+    position: absolute;
+    right: 0;
+    margin-right: 3px;
+    margin-top: 3px;
+}
+
+.delete_button_wrapper button {
+    opacity: 80%;
+    height: fit-content;
+}
+
+.diary-detail-modify-box p {
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.diary-detail-modify-box p:first-child {
+    margin-right: 10px;
+}
+
+.space-between {
+    justify-content: space-between;
+}
+
+.diary-detail-date-box {
+    margin-top: 20px;
+}
+
+.diary-detail-content {
+    padding-bottom: 5px;
+    font-weight: 500;
+    font-size: 18px;
+    margin-top: 5px;
+}
+
+.diary-detail-content:first-child {
+    margin-top: 0;
+}
+
+@media (min-width: 1024px) {
+    .mypage-all-wrap {
+        max-width: 1176px;
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .content-title {
+        font-size: 18px;
+        font-weight: bold;
+        color: rgb(26, 26, 26);
+        line-height: 24px;
+        letter-spacing: -0.45px;
+        margin: 0px;
+    }
+
+}
+
+@media (min-width: 960px) {
+    .diary-modal-box {
+        top: 50%;
+        left: 50%;
+        width: 500px;
+        transform: translate(-50%, -50%);
+        animation: 0.25s ease 0s 1 normal none running openModal;
+        max-height: 95%;
+        padding: 32px 24px;
+    }
+
+}
+
+.diary-modal-display {
+    display: none;
+}
+
+.toastui-calendar-icon.toastui-calendar-ic-handle-y {
+    display: none;
+}
+
+.toastui-calendar-content span {
+    color: #0c0c0c;
+    font-weight: bold;
+}
+
+.toastui-calendar-template-time strong {
+    display: none;
+}
+
+.image-cancel-box {
+    position: absolute;
+    top: 3px;
+    right: 5px;
+    text-align: center;
+    color: #fff;
+    cursor: pointer;
+}
+
+.sumnail-box li {
+    width: 23%;
+}
+
+.sumnail-box img {
+    height: 100px;
+    object-fit: cover;
+}
+
+
+.toastui-calendar-daygrid-cell:hover {
+    background-color: #f1f1f1 !important;
+}
+
+.save-active {
+    background-color: #ffddf6;
+}
+
+        

@@ -1,0 +1,568 @@
+@charset "utf-8";
+
+
+button {
+    cursor: pointer;
+}
+
+textarea {
+    font-family: "Pretendard JP Variable", "Pretendard JP", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Hiragino Sans", "Apple SD Gothic Neo", Meiryo, "Noto Sans JP", "Noto Sans KR", "Malgun Gothic", Osaka, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+    resize: none;
+}
+
+.mypage-wrap {
+    position: relative;
+    max-width: 640px;
+    margin: 0px auto;
+}
+
+.modify-wrap {
+    background-color: rgb(255, 255, 255);
+    position: relative;
+    padding: 24px;
+}
+
+.image-modify-box {
+    display: flex;
+    justify-content: center;
+    margin: 24px 0px;
+}
+
+.image-modify-layout {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.image-profile-box {
+    position: relative;
+    width: 88px;
+    height: 88px;
+}
+
+.image-size {
+    position: relative;
+    width: 88px;
+    height: 88px;
+}
+
+.image-span {
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgb(248, 248, 248);
+    border-radius: 100%;
+    line-height: 0;
+    transform: rotate(0deg);
+}
+
+.image-picture {
+    top: 0px;
+    left: 0px;
+    position: relative;
+}
+
+.image-picture img {
+    transition: opacity 0.1s linear 0s;
+    object-fit: cover;
+    opacity: 1;  
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.image-pen {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    width: 28px;
+    height: 28px;
+    padding: 4px;
+    border-radius: 14px;
+    background-color: #36f;
+    display: flex;
+    align-items: center;
+}
+
+.form-layout {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+}
+
+.form-box {
+    display: flex;
+    flex-direction: column;
+    margin: 0px 0px 16px;
+}
+
+.form-title {
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 0px 0px 4px;
+    color: rgb(26, 26, 26);
+}
+
+.modify-input {
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 0px;
+    border: 1px solid rgb(239, 239, 239);
+    background-color: white;
+    height: 48px;
+    flex: 1 1 auto;
+    width: 100%;
+    color: rgb(26, 26, 26);
+    box-sizing: border-box;
+    padding: 0px 16px;
+    border-radius: 3px;
+}
+
+.modify-input:hover {
+    border :1px solid rgb(215, 215, 215);
+}
+
+.flex {
+    display: flex;
+}
+
+.common-button {
+    border: 0px;
+    outline: none;
+    margin: 0px;
+    padding: 0px;
+    flex: initial;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.change-phone-button {
+    width: auto;
+    display: inline-flex;
+    vertical-align: middle;
+    border-radius: 3px;
+    color: rgb(26, 26, 26);
+    background-color: rgb(248, 248, 248);
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: -0.2px;
+    padding: 0px 16px;
+    height: 40px;
+    transition: background-color 0.1s ease 0s;
+    text-decoration-line: none;
+}
+
+
+.auto-flex {
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modify-submit-button {
+    width: 100%;
+    display: flex;
+    vertical-align: middle;
+    border-radius: 3px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(255, 86, 0);
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: -0.2px;
+    padding: 0px 16px;
+    height: 40px;
+    transition: background-color 0.1s ease 0s;
+    text-decoration-line: none;
+}
+
+.modify-submit-button:disabled{
+    color: rgb(255, 255, 255);
+    background-color: rgb(255, 242, 233);
+    cursor: not-allowed;
+}
+
+button.phone-modify-button {
+    height: 48px;
+    border : 1px solid rgb(239, 239, 239);
+    border-image: initial;
+    border-left: none;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+
+hr {
+    box-shadow: rgb(248, 248, 248) 0px -1px 0px inset;
+    border: none;
+    height: 1px;
+    margin: 0px !important;
+}
+
+.message-accept {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.toggle-box {
+    display: flex;
+    position: relative;
+    padding: 2px;
+    box-sizing: border-box;
+    cursor: pointer;
+    border-radius: 23px;
+    transition: background-color 0.15s ease-out 0.08s;
+    width: 36px;
+    height: 22px;
+    background-color: rgb(229, 229, 229);
+}
+
+.toggle-box::after {
+    content: "";
+    box-sizing: border-box;
+    border-radius: 50%;
+    background: white;
+    transform: translate(0px, 0px);
+    transition: transform 0.15s ease-out 0.08s;
+    box-shadow: rgba(41, 42, 43, 0.1) 0px 1px 3px, rgba(0, 0, 0, 0.04) 0px 0px 0.5px;
+    width: 18px;
+    height: 18px;
+}
+
+.message-span {
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 0px 9px 0px 0px;
+    color: rgb(26, 26, 26);
+    flex: 1 1 auto;
+}
+
+.withdraw-button {
+    width: 100%;
+    display: flex;
+    vertical-align: middle;
+    border-radius: 3px;
+    color: rgb(26, 26, 26);
+    background-color: rgb(248, 248, 248);
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: -0.2px;
+    padding: 0px 16px;
+    height: 40px;
+    transition: background-color 0.1s ease 0s;
+    text-decoration-line: none;
+}
+
+.none-cell {
+    background-color: rgb(248, 248, 248);
+    width: 100%;
+    height: 8px;
+}
+
+.toggle-active {
+    display: flex;
+    position: relative;
+    padding: 2px;
+    box-sizing: border-box;
+    cursor: pointer;
+    border-radius: 23px;
+    transition: background-color 0.15s ease-out 0.08s;
+    width: 36px;
+    height: 22px;
+    background-color: rgb(255, 86, 0);
+}
+
+.toggle-active::after {
+    transform: translate(14px, 0px);
+}
+
+.phone-number-modal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    inset: 0px;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.72);
+    opacity: 1;
+    visibility: visible;
+    overscroll-behavior: contain;
+    position: fixed ;
+    z-index: 5000;
+}
+
+.phone-modal-display {
+    display: none;
+}
+
+.phone-modal-box {
+    display: flex;
+    flex-direction: column;
+    padding: 32px;
+    width: 480px;
+    max-height: 800px;
+    border-radius: 8px;
+    background-color: rgb(255, 255, 255);
+    box-sizing: border-box;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 0px 5px, rgba(0, 0, 0, 0.02) 0px 6px 4px, rgba(0, 0, 0, 0.03) 0px 9px 6px, rgba(0, 0, 0, 0.03) 0px 16px 12px, rgba(0, 0, 0, 0.08) 0px 24px 24px;
+}
+
+.phone-modal-title-box {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 8px;
+    justify-content: space-between;
+    flex: 1 1 auto;
+    white-space: pre-line;
+}
+
+.phone-modal-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: rgb(26, 26, 26);
+    line-height: 34px;
+    letter-spacing: -0.4px;
+    margin: 0px;
+}
+
+.modal-exit {
+    display: inline-flex;
+    flex: 0 0 auto;
+    vertical-align: middle;
+    padding: 0px;
+    border-radius: 3px;
+    color: rgb(26, 26, 26);
+    background-color: transparent;
+    width: 32px;
+    height: 32px;
+    transition: background-color 0.1s ease 0s;
+}
+
+.phone-modal-sub-title {
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 0px;
+    flex: 0 0 auto;
+    margin-bottom: 16px;
+    color: rgb(162, 162, 162);
+}
+
+.phone-modal-input-box {
+    flex: 1 1 auto;
+}
+
+.phone-modal-input-box-layout {
+    display: flex;
+    flex-direction: column;
+    margin: 0px 0px 16px;
+    margin-bottom: 8px;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.phone-input-box {
+    display: flex;
+    flex: 1 1 0%;
+}
+
+.phone-input-box input {
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+.phone-modify-button:disabled {
+    cursor: not-allowed;
+    color: rgb(239, 239, 239);
+    background-color: rgb(248, 248, 248);
+}
+
+.phone-modal-button-box {
+    flex: 0 0 auto;
+    display: flex;
+    margin: 0px -8px;
+    flex-direction: row;
+}
+
+.phone-modal-button-box button {
+    flex: 1 0 auto;
+    margin: 16px 8px 0px;
+    cursor: pointer;
+}
+
+.cancel-button:hover {
+    background-color:  rgb(215, 215, 215);
+}
+
+.phone-number-confirm-button {
+    display: flex;
+    vertical-align: middle;
+    border-radius: 3px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(255, 86, 0);
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: -0.2px;
+    padding: 0px 16px;
+    height: 40px;
+    transition: background-color 0.1s ease 0s;
+    text-decoration-line: none;
+}
+
+.phone-number-confirm-button:disabled {
+    color: rgb(255, 255, 255);
+    background-color: rgb(255, 242, 233);
+    cursor: not-allowed;
+}
+
+.withdraw-modal {
+    position: absolute;
+    inset: 0px;
+    z-index: 10000;
+}
+
+.modal-back {
+    background-color: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    inset: 0px;
+    display: block;
+    z-index: 5000;
+    animation: 0.25s ease 0s 1 normal none running openOverlay;
+    opacity: 1.1;
+}
+
+.withdraw-modal-box {
+    padding: 24px;
+    position: fixed;
+    overflow-y: auto;
+    top: 13%;
+    z-index: 5001;
+    background: rgb(255, 255, 255);
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 3px 6px 0px, rgba(0, 0, 0, 0.12) 0px 8px 16px 0px;
+}
+
+.withdraw-sub-title {
+    font-size: 14px;
+    font-weight: bold;
+    color: rgb(102, 102, 102);
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 0px;
+    margin-bottom: 4px;
+}
+
+.withdraw-sub-content {
+    font-size: 14px;
+    font-weight: normal;
+    color: rgb(102, 102, 102);
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 0px;
+    margin-bottom: 4px;
+}
+
+.withdraw-reson-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: rgb(26, 26, 26);
+    line-height: 28px;
+    margin: 0px;
+}
+
+.withdraw-reson-sub-title {
+    font-size: 14px;
+    font-weight: normal;
+    color: rgb(26, 26, 26);
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 8px 0px 4px;
+}
+
+.reson-textarea {
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 0px;
+    color: rgb(26, 26, 26);
+    border-radius: 1px;
+    background-color: white;
+    border: 1px solid rgb(229, 229, 229);
+    width: 100%;
+    height: 104px;
+    padding: 12px 16px;
+    box-sizing: border-box;
+    border-radius: 3px;
+    margin-top: 4px;
+    height: 153px;
+}
+
+.withdraw-main-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: rgb(26, 26, 26);
+    line-height: 34px;
+    letter-spacing: -0.4px;
+    display: flex;
+    margin: 0px 0px 8px;
+}
+
+.exit-icon {
+    flex: 0 0 auto;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+.check-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: rgb(26, 26, 26);
+    line-height: 24px;
+    letter-spacing: -0.3px;
+    margin: 0px;
+}
+
+.withdraw-display {
+    display: none;
+}
+
+.error-msg {
+    margin-top: 5px;
+    font-size: 14px;
+    color: red;
+}
+
+.auth-box {
+    display: none;
+}
+
+.auth-msg {
+    margin-top: 4px;
+    font-size: 14px;
+    color : #36f;
+}
+
+@media (min-width: 960px) {
+    .withdraw-modal-box {
+        top: 50%;
+        left: 50%;
+        width: 480px;
+        transform: translate(-50%, -50%);
+        animation: 0.25s ease 0s 1 normal none running openModal;
+        max-height: 95%;
+        padding: 32px 24px;
+    }
+}

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>헤더</title>
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/main/header.css">
+    <link rel="icon" href="/image/logo/logo.png">
+</head>
+<body>
+        <section class="header-section" th:fragment="header">
+           <header class="header-box">
+                <div class="header">
+                    <div class="header-layout" style="padding-left:10px;">
+                        <div class="header-height">
+                            <a th:href="@{/main/}">
+                                <div class="logo-box">
+                                    <div class="logo">
+                                        <img src="/image/logo/logo.png" style="width: 90px;">
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="none-block"></div>
+                            <div class="header-content-box">
+                                <div class="header-category-box">
+                                    <!-- 메인으로 놓을 메뉴들 -->
+                                    <a href="/board/suggest/list">
+                                        <h4 class="cate">제안</h4>
+                                    </a>
+                                    <div class="none-div"></div>
+                                    <a th:href="@{/board/notice/list}">
+                                        <h4 class="cate">공지사항</h4>
+                                    </a>
+                                </div>
+                                <div class="none-block mobile-active"></div>
+                                <div class="search-box">
+                                    <div class="search-box-layout">
+                                        <div class="header-search-box">
+                                            <div class="search-container">
+                                                <div class="search-background">
+                                                    <div class="search-div">
+                                                        <p class="search-p">찾으시는 챌린지가 있으신가요?</p>
+                                                        <span class="search-icon">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.105 17.66A8.997 8.997 0 0 1 10.5 19.6c-5.02 0-9.1-4.08-9.1-9.1s4.08-9.1 9.1-9.1 9.1 4.08 9.1 9.1c0 2.05-.67 3.985-1.94 5.605l5.48 5.485-1.555 1.555-5.485-5.48.005-.005ZM10.5 3.6a6.907 6.907 0 0 0-6.9 6.9c0 3.805 3.095 6.9 6.9 6.9s6.9-3.095 6.9-6.9-3.095-6.9-6.9-6.9Z"></path></svg>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="search-display">
+                                            <div class="search-header-active">
+                                                <div class="search-area">
+                                                    <div class="center-flex">
+                                                        <div class="header-layout">
+                                                            <div class="search-active-logo-box">
+                                                                <a th:href="@{/main/}">
+                                                                    <span class="logo" style="margin-top: 20px;">
+                                                                        <img src="/image/logo/logo.png" style="width:90px">
+                                                                    </span>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="search-active-layout">
+                                                        <div class="search-input-box">
+                                                            <div class="search-input-box-layout">
+                                                                <div class="header-input-box">
+
+                                                                    <!-- 검색 -->
+                                                                    <form th:action="@{/main/search}" method="get" name="form">
+                                                                        <input name="search" type="text" placeholder="찾으시는 챌린지가 있으신가요?" class="search-input">
+
+                                                                </div>
+                                                                        <button class="search-icon">
+                                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.105 17.66A8.997 8.997 0 0 1 10.5 19.6c-5.02 0-9.1-4.08-9.1-9.1s4.08-9.1 9.1-9.1 9.1 4.08 9.1 9.1c0 2.05-.67 3.985-1.94 5.605l5.48 5.485-1.555 1.555-5.485-5.48.005-.005ZM10.5 3.6a6.907 6.907 0 0 0-6.9 6.9c0 3.805 3.095 6.9 6.9 6.9s6.9-3.095 6.9-6.9-3.095-6.9-6.9-6.9Z"></path></svg>
+                                                                        </button>
+                                                                    </form>
+                                                            </div>
+                                                            <div class="none-div"></div>
+                                                            <button type="button" class="search-cancel-button">
+                                                                <p class="search-cancel-p">취소</p>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="background-dark">
+                                                    <div class="dark-flex">
+                                                        <div class="dark"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="header-menu-box">
+                                <div class="header-menu-box-layout">
+                                    <a th:href="@{/main/service-introduction}">
+                                        <p class="header-menu">서비스 소개</p>
+                                    </a>
+                                    <div class="none-div"></div>
+
+                                    <!-- 로그인 안되 잇을 때 display block -->
+                                    <a th:href="@{/member/login}"  sec:authorize="!isAuthenticated()">
+                                        <p class="header-menu">로그인</p>
+                                    </a>
+                                    <!--  <li sec:authorize="!isAuthenticated()"><a href="/login">로그인</a></li>
+                                     <li sec:authorize="isAuthenticated()"><a href="/logout">로그아웃</a></li>
+                                      로그인 되잇을 때 경우 -->
+                                    <div class="login-active" sec:authorize="isAuthenticated()">
+                                        <th:block th:if="${!#strings.isEmpty(memberDTO)}">
+                                        <div class="header-profile" >
+                                            <a href="/mypage/suggest-like-list">
+                                                <span class="search-icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.141 3.91A6.262 6.262 0 0 0 16.654 2c-1.621 0-3.252.635-4.488 1.91-.06.06-.11.125-.165.19-.055-.06-.105-.13-.165-.19A6.263 6.263 0 0 0 7.35 2c-1.621 0-3.252.635-4.488 1.91-2.481 2.545-2.481 6.67 0 9.21l8.935 8.79c.06.06.135.09.21.09.075 0 .15-.03.21-.09l8.935-8.79c2.467-2.54 2.467-6.665-.01-9.21Zm-1.78 7.35-7.37 7.245-7.369-7.245c-1.47-1.525-1.466-3.99.015-5.51A3.73 3.73 0 0 1 7.33 4.605c1.005 0 2.19.505 2.996 1.25.73.68 1.066 1.235 1.361 1.655.03.045.125.215.3.215s.27-.175.305-.22c.296-.425.63-.975 1.356-1.655.806-.75 1.991-1.25 2.997-1.25a3.74 3.74 0 0 1 2.696 1.145c1.486 1.525 1.491 3.99.02 5.514Z"></path></svg>
+                                                </span>
+                                            </a>
+                                            <div class="none-div"></div>
+                                            <div class="login-flex">
+                                                <div class="header-login-box">
+                                                    <div class="header-profile-image-box">
+                                                        <div class="header-profile-background profile" style="width: 100%;">
+<!--                                                            <img src="/image/logo/normal_profile.png" class="header-profile-image">-->
+                                                        </div>
+                                                    </div>
+                                                    <div style="width: 4px;"></div>
+                                                    <!-- 평소 화살표 -->
+                                                    <span class="header-profile-arrow header-arrow-on">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M2.075 8.825 3.49 7.41c.1-.1.255-.1.355 0L12 15.565l8.16-8.16c.1-.1.255-.1.355 0L21.93 8.82c.1.1.1.255 0 .355l-9.75 9.75c-.1.1-.255.1-.355 0L2.075 9.18c-.1-.1-.1-.26 0-.355Z"></path></svg>
+                                                    </span>
+                                                    <!-- 화살표 누르면 활성화 -->
+                                                    <span class="header-profile-arrow header-arrow-off">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m21.93 15.175-1.415 1.415c-.1.1-.255.1-.355 0l-8.155-8.155-8.16 8.16c-.1.1-.255.1-.355 0L2.075 15.18c-.1-.1-.1-.255 0-.355l9.75-9.75c.1-.1.255-.1.355 0l9.75 9.745c.1.1.1.26 0 .355Z"></path></svg>
+                                                    </span>
+                                                </div>
+                                                <div class="active-arrow">
+                                                    <div class="header-profile-modal"></div>
+                                                    <div class="header-profile-modal-box">
+                                                        <div class="header-profile-modal-layout">
+                                                            <div class="profile-modal">
+                                                                <!-- 마이페이지 링크 -->
+                                                                <a th:href="@{/mypage/main}">
+                                                                    <div class="flex-stretch">
+                                                                        <div class="header-profile-modal-image-box">
+                                                                            <div class="header-profile-modal-image-layout">
+                                                                                <div class="header-profile-image-background profile mypage-profile-image-box">
+<!--                                                                                    <img src="/image/logo/normal_profile.png" class="header-profile-image" style="width:100%; height: 100%;">-->
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="header-profile-name-box">
+                                                                            <p class="member-name" th:text="${memberDTO.memberNickname}">Classmate</p>
+                                                                            <button type="button" class="header-myPage-button">
+                                                                                <div class="header-myPage">
+                                                                                    <span class="myPage-arrow">
+                                                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.825 21.93 7.41 20.515c-.1-.1-.1-.255 0-.355l8.155-8.155-8.16-8.16c-.1-.1-.1-.255 0-.355L8.82 2.075c.1-.1.255-.1.355 0l9.75 9.75c.1.1.1.255 0 .355L9.18 21.93c-.1.1-.26.1-.355 0Z"></path></svg>
+                                                                                    </span>
+                                                                                    <div style="width: 2px;"></div>
+                                                                                    <span class="myPage">마이페이지</span>
+                                                                                </div>
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </a>
+                                                                <div class="header-profile-border"></div>
+                                                                <div class="login-flex">
+                                                                    <!-- 카테고리 나열 -->
+                                                                    <div style="height: 12px;"></div>
+                                                                    <a th:href="@{/member/logout}" >
+                                                                        <p class="header-menu">로그아웃</p>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </th:block>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+           </header>
+           <nav class="menu-background">
+                <div class="center-flex">
+                    <div class="header-layout">
+                        <div class="menu-box">
+                            <a th:href="@{/board/diary/list}">
+                                <div class="cate-name-box">
+                                    <span class="cate-name">
+                                        공유 다이어리
+                                    </span>
+                                </div>
+                            </a>
+                            <div class="none-div"></div>
+                            <a th:href="@{/board/challenge/personal/list}">
+                                <div class="cate-name-box">
+                                    <span class="cate-name">
+                                        개인 챌린지
+                                    </span>
+                                </div>
+                            </a>
+                            <div class="none-div"></div>
+                            <a th:href="@{/board/challenge/group/list}">
+                                <div class="cate-name-box">
+                                    <span class="cate-name">
+                                        그룹 챌린지
+                                    </span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+           </nav>
+        </section>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script src="/js/main/header.js"></script>
+</html>

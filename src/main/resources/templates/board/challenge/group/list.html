@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>그룹 챌린지 게시판 목록</title>
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/board/challenge/challenge-list.css">
+    <link rel="icon" href="/image/logo/favicon.png">
+    <link rel="stylesheet" href="/css/main/header.css">
+    <link rel="stylesheet" href="/css/main/footer.css">
+</head>
+<body>
+<div class="__next">
+    <div id="wrapper">
+        <th:block th:replace="~{main/header :: header}"></th:block>
+        <div class="main">
+            <div class="main-wrapper">
+                <section class="main-wrapper-section">
+                    <section class="main-wrapper-section-box">
+                        <section class="main-wrapper-section-box-layout">
+                            <div class="main-wrapper-section-box-layout-wrap wrap-1">
+                                <h2>그룹 챌린지 </h2>
+                                <div class="div-line" top="0" right="0" bottom="24" left="0"></div>
+                                <div class="main-top">
+                                    <section class="main-top-wrap">
+                                        <section class="main-top-wrap-box">
+                                            <button class="currently-challenge select-button challenge challenge-1 challenge-2 select-button-active"
+                                                    value="0" icon-position="0" color="default" fill="false">
+                                                <span>진행중인 챌린지</span>
+                                            </button>
+                                            <button class="closing-challenge select-button challenge challenge-1 challenge-2"
+                                                    value="1" icon-position="0" color="default" fill="false">
+                                                <span>종료된 챌린지</span>
+                                            </button>
+                                        </section>
+                                    </section>
+                                </div>
+                                <div class="div-line" top="0" right="0" bottom="24" left="0"></div>
+                                <div class="challenge-wrapper">
+                                    <div class="challenge-line" top="[object Object]" right="0" buttom="0"
+                                         left="0"></div>
+                                    <div class="challenge-wrapper-main">
+                                        <div class="challenge-wrapper-main-box">
+
+                                            <ul smcolumn="2" class="challenge-wrapper-list">
+
+                                            </ul>
+                                        </div>
+                                        <div></div>
+                                        <div class="paging-box">
+                                            <div class="paging-layout">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </div>
+        </div>
+        <th:block th:replace="~{main/footer :: footer}"></th:block>
+    </div>
+</div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script th:inline="javascript">
+    let member = [[${session.member}]];
+    let memberDTO = [[${memberDTO}]];
+    let memberFile = null;
+    if(memberDTO){
+        memberFile = memberDTO.fileDTO;
+    }
+</script>
+<script>
+    let $selectButton = $(".select-button");
+
+    $selectButton.each((i, e) => {
+        $(e).click(() => {
+            $selectButton.removeClass("select-button-active");
+            $(e).addClass("select-button-active");
+        });
+    });
+</script>
+<script src="/js/board/challenge/group/list.js"></script>
+<script src="/js/main/header.js"></script>
+</html>

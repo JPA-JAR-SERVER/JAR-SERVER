@@ -1,0 +1,314 @@
+@charset "utf-8";
+
+.all_wrap_div{
+    display: block;
+    width: 100%;
+    max-width: 1232px;
+    margin: 0px auto;
+    -webkit-box-align: stretch;
+}
+.header{
+    display: flex;
+    border-radius: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    border-color: rgb(229, 229, 229);
+}
+.header_div{
+    justify-content: center;
+    display: flex;
+    height: 78px;
+    width: 100%;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: column;
+}
+.class101_outside{
+    display: flex;
+    width: 100%;
+    max-width: 1216px;
+    padding-left: 20px;
+    padding-right: 20px;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: column;
+}
+.class101_inside{
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: row;
+}
+.header_a{
+    text-decoration: none;
+    color: inherit;
+}
+.header_a_span{
+    display: block;
+    width: auto;
+    height: 20px;
+}
+.header_a_span_svg{
+    overflow: hidden;
+    display: block;
+    width: auto;
+    height: 100%;
+    fill: rgb(0, 0, 0);
+}
+.header_a_span_svg_path{
+    fill: rgb(0, 0, 0);
+}
+.middle_wrap{
+    -webkit-box-pack: center;
+    justify-content: center;
+    display: flex;
+    flex: 1 1 0%;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: column;
+}
+.middle_wrap_div{
+    margin-top: unset;
+    margin-bottom: unset;
+    -webkit-box-align: center;
+    align-items: center;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}
+.middle_box{
+    max-width: 480px;
+    padding-left: 32px;
+    padding-right: 32px;
+    border-radius: 20px;
+    overflow: hidden;
+    z-index: 0;
+    margin: 0px auto;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(255, 255, 255);
+    border-color: rgb(229, 229, 229);
+    border: 1px solid #e1e1e1;
+}
+.middle_box_div{
+    padding-top: 36px;
+    padding-bottom: 36px;
+    display: flex;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: column;
+}
+.phone{
+    padding-bottom: 12px;
+    display: flex;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: column;
+}
+.phone_div{
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: row;
+}
+.phone_h3{
+    border-width: 0px;
+    color: rgb(12, 12, 12);
+    margin: 0px;
+    padding: 0px;
+    font-size: 1.625rem;
+    font-weight: 700;
+    line-height: 2.25rem;
+}
+.login{
+    display: flex;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: column;
+}
+.all_p{
+    border-width: 0px;
+    color: rgb(12, 12, 12);
+    margin: 0px;
+    padding: 0px;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.125rem;
+}
+.hei_38{
+    height: 38px;
+    display: flex;
+}
+.login_div{
+    display: flex;
+    height: 44px;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: row;
+}
+.phone_number{
+    display: flex;
+    flex: 1 1 0%;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: column;
+}
+input[name=phone_number]{
+    background-color: rgb(255, 255, 255);
+    border-radius: 2px;
+    outline-style: none;
+    color: var(--system-on-color);
+    width: 100%;
+    height: 100%;
+    padding: 13px 16px;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.125rem;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.15);
+
+}input[name=memberPhoneNumber]{
+     background-color: rgb(255, 255, 255);
+     border-radius: 2px;
+     outline-style: none;
+     color: var(--system-on-color);
+     width: 100%;
+     height: 100%;
+     padding: 13px 16px;
+     font-size: 0.875rem;
+     font-weight: 400;
+     line-height: 1.125rem;
+     border-width: 1px;
+     border-style: solid;
+     border-color: rgba(0, 0, 0, 0.15);
+ }
+.confirm_number{
+    color: rgb(255, 255, 255);
+    --system-on-color: #ffffff;
+    cursor: auto;
+    overflow: hidden;
+    z-index: 0;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-width: 0px;
+    border-radius: 2px;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    width: 100%;
+    display: inline-flex;
+    padding: 15px 14px;
+    position: relative;
+}
+.flex_visi{
+    display: flex;
+    visibility: inherit;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: row;
+}
+.hei_4{
+    height: 4px;
+    display: flex;
+}
+.confirm_number_span{
+    border-width: 0px;
+    color: var(--system-on-color);
+    margin: 0px;
+    padding: 0px;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.25rem;
+}
+.confirm_number_span_p{
+    border-width: 0px;
+    color: var(--system-on-color);
+    margin: 0px;
+    padding: 0px;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.25rem;
+}
+.message_p{
+    border-width: 0px;
+    color: rgb(12, 12, 12);
+    margin: 0px;
+    padding: 0px;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.125rem;
+}
+.confirm_box{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    -webkit-box-pack: start;
+    justify-content: flex-start;
+}
+input[name=phoneNumberConfirm]{
+    background-color: rgb(255, 255, 255);
+    border-radius: 2px;
+    outline-style: none;
+    color: var(--system-on-color);
+    width: 100%;
+    height: 100%;
+    padding: 13px 16px;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.125rem;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.15);
+    margin: 0;
+}
+.down_confirm{
+    color: rgb(148, 148, 148);
+    --system-on-color: #949494;
+    cursor: default;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-width: 0px;
+    border-radius: 2px;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    width: 100%;
+    display: inline-flex;
+    padding: 15px 14px;
+    position: relative;
+}
+.certification{
+    border-width: 0px;
+    color: rgb(255, 255, 255);
+    margin: 0px;
+    padding: 0px;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.25rem;
+}
+input[name=phone_number_confirm]{
+    background-color: #ffffff;
+    border-width: 0;
+    border-radius: 2px;
+    outline-style: none;
+    color: var(--system-on-color);
+    width: 100%;
+    height: 100%;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 13px;
+    padding-bottom: 13px;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.125rem;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #00000026;
+}

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마이페이지-헤더</title>
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/mypage/header.css">
+</head>
+<body>
+    <div th:fragment="header">
+        <section class="header-section">
+            <header class="header-box">
+                <div class="header">
+                    <div class="header-layout">
+                        <div class="header-height">
+                            <a th:href="@{/main/}">
+                                <div>
+                                    <span class="logo">
+                                        <img src="/image/logo/logo.png" style="width: 90px;">
+                                    </span>
+                                </div>
+                            </a>
+                            <div class="none-block"></div>
+                            <div class="header-menu-box">
+                                <div class="header-menu-box-layout">
+                                    <div class="login-active">
+                                        <div class="header-profile">
+                                            <div class="none-div"></div>
+                                            <a href="/mypage/suggest-like-list">
+                                                <span class="search-icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.141 3.91A6.262 6.262 0 0 0 16.654 2c-1.621 0-3.252.635-4.488 1.91-.06.06-.11.125-.165.19-.055-.06-.105-.13-.165-.19A6.263 6.263 0 0 0 7.35 2c-1.621 0-3.252.635-4.488 1.91-2.481 2.545-2.481 6.67 0 9.21l8.935 8.79c.06.06.135.09.21.09.075 0 .15-.03.21-.09l8.935-8.79c2.467-2.54 2.467-6.665-.01-9.21Zm-1.78 7.35-7.37 7.245-7.369-7.245c-1.47-1.525-1.466-3.99.015-5.51A3.73 3.73 0 0 1 7.33 4.605c1.005 0 2.19.505 2.996 1.25.73.68 1.066 1.235 1.361 1.655.03.045.125.215.3.215s.27-.175.305-.22c.296-.425.63-.975 1.356-1.655.806-.75 1.991-1.25 2.997-1.25a3.74 3.74 0 0 1 2.696 1.145c1.486 1.525 1.491 3.99.02 5.514Z"></path></svg>
+                                                </span>
+                                            </a>
+                                            <div class="none-div"></div>
+                                            <div class="login-flex">
+                                                <div class="header-login-box">
+                                                    <div class="header-profile-image-box">
+                                                        <div class="header-profile-background profile">
+                                                        </div>
+                                                    </div>
+                                                    <div style="width: 4px;"></div>
+                                                    <!-- 평소 화살표 -->
+                                                    <span class="header-profile-arrow header-arrow-on">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M2.075 8.825 3.49 7.41c.1-.1.255-.1.355 0L12 15.565l8.16-8.16c.1-.1.255-.1.355 0L21.93 8.82c.1.1.1.255 0 .355l-9.75 9.75c-.1.1-.255.1-.355 0L2.075 9.18c-.1-.1-.1-.26 0-.355Z"></path></svg>
+                                                    </span>
+                                                    <!-- 화살표 누르면 활성화 -->
+                                                    <span class="header-profile-arrow header-arrow-off">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m21.93 15.175-1.415 1.415c-.1.1-.255.1-.355 0l-8.155-8.155-8.16 8.16c-.1.1-.255.1-.355 0L2.075 15.18c-.1-.1-.1-.255 0-.355l9.75-9.75c.1-.1.255-.1.355 0l9.75 9.745c.1.1.1.26 0 .355Z"></path></svg>
+                                                    </span>
+                                                </div>
+                                                <div class="active-arrow">
+                                                    <div class="header-profile-modal"></div>
+                                                    <div class="header-profile-modal-box">
+                                                        <div class="header-profile-modal-layout">
+                                                            <div class="profile-modal">
+                                                                <!-- 마이페이지 링크 -->
+                                                                <a th:href="@{/mypage/main}">
+                                                                    <div class="flex-stretch">
+                                                                        <div class="header-profile-modal-image-box">
+                                                                            <div class="header-profile-modal-image-layout">
+                                                                                <div class="header-profile-image-background profile">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="header-profile-name-box">
+                                                                            <p class="member-name" th:text="${memberDTO.memberNickname}">Classmate</p>
+                                                                            <button type="button" class="header-myPage-button">
+                                                                                <div class="header-myPage">
+                                                                                    <span class="myPage-arrow">
+                                                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.825 21.93 7.41 20.515c-.1-.1-.1-.255 0-.355l8.155-8.155-8.16-8.16c-.1-.1-.1-.255 0-.355L8.82 2.075c.1-.1.255-.1.355 0l9.75 9.75c.1.1.1.255 0 .355L9.18 21.93c-.1.1-.26.1-.355 0Z"></path></svg>
+                                                                                    </span>
+                                                                                    <div style="width: 2px;"></div>
+                                                                                    <span class="myPage">마이페이지</span>
+                                                                                </div>
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </a>
+                                                                <div class="header-profile-border"></div>
+                                                                <div class="login-flex">
+                                                                    <!-- 카테고리 나열 -->
+                                                                    <div style="height: 12px;"></div>
+                                                                    <a th:href="@{/member/logout}">
+                                                                        <p class="header-menu">로그아웃</p>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+        </section>
+    </div>
+ </body>
+ <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+</html>

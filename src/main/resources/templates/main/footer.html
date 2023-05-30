@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>푸터</title>
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/main/footer.css">
+</head>
+<body>
+<footer class="footer-wrap" th:fragment="footer">
+    <div class="footer-container">
+        <div class="sub-footer-wrap">
+            <div class="footer-logo-box">
+                <div class="footer-logo-layout">
+                    <img src="/image/logo/logo.png" style="width:25%">
+                </div>
+                <div class="footer-logo-content">
+                    <div class="footer-logo-content">
+                        JAR는 모든 사람이 사랑하는 일을 하며
+                        <br>
+                        살 수 있도록 세상을 바꾸고자 합니다.
+                    </div>
+                </div>
+            </div>
+            <div class="footer-cate-box">
+                <div class="footer-cate-title">JAR</div>
+                <a th:href="@{/main/}" class="footer-a">
+                    <div class="footer-a-title">
+                        홈
+                    </div>
+                </a>
+                <a  th:href="@{/main/service-introduction}" class="footer-a">
+                    <div class="footer-a-title">
+                        서비스 소개
+                    </div>
+                </a>
+            </div>
+            <div class="footer-cate-box">
+                <div class="footer-cate-title">안내</div>
+                <a th:href="@{/main/terms}" class="footer-a">
+                    <div class="footer-a-title">
+                        이용약관
+                    </div>
+                </a>
+                <a th:href="@{/main/faq}" class="footer-a">
+                    <div class="footer-a-title">
+                        FAQ
+                    </div>
+                </a>
+            </div>
+            <div class="footer-cate-box">
+                <div class="footer-faqCenter-box">
+                    <div class="footer-cate-title" style="margin-bottom: 8px; float: left;">고객센터</div>
+                    <div class="footer-mobile-info-msg">
+                        오전 10시 ~ 오후 6시 (주말, 공휴일 제외)
+                    </div>
+                </div>
+                <div class="footer-inquire-faq">
+                    <a th:href="@{/board/inquire/list}" type="button" class="footer-inquire-button">
+                        <span>문의하기</span>
+                    </a>
+                    <div class="footer-info-msg">
+                        오전 10시 ~ 오후 6시 (주말, 공휴일 제외)
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-info-box">
+            <div class="footer-inquire-site-box">
+                <div class="footer-project-info">
+                    주식회사 JAR | 공동 대표 최선규, 이순철, 임종욱, 정용준 |
+                    서울특별시 강남구 테헤란로 146 | hds1234@naver.com |
+                    전화번호: 1515-1515 | 클라우드 호스팅: Amazon Web Services Korea LLC <br>
+                    사업자등록번호 : 111-11-12345 | 통신판매업신고 : 1111-서울강남-11111 |
+                    JAR은 통신판매중개자로서 중개하는 거래에 대하여 책임을 부담하지 않습니다.
+                </div>
+            </div>
+        </div>
+        <span></span>
+    </div>
+</footer>
+</body>
+</html>

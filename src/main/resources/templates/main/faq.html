@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JAR_FAQ</title>
+    <link rel="icon" href="/image/logo/favicon.png">
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/main/header.css">
+    <link rel="stylesheet" href="/css/main/footer.css">
+</head>
+<body style="background-color: black;">
+    <div>
+        <!-- 헤더 -->
+        <th:block th:replace="~{main/header :: header}"></th:block>
+            <div style="text-align: center; margin: 96px 0px;">
+                <img src="/image/faq/FAQre.png" style="width: 70%; margin: 0 auto;">
+            </div>
+        <th:block th:replace="~{main/footer :: footer}"></th:block>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script th:inline="javascript">
+    let member = [[${session.member}]];
+    let memberDTO = [[${memberDTO}]];
+    let memberFile = null;
+    if(memberDTO){
+        memberFile = memberDTO.fileDTO;
+    }
+</script>
+<script src="/js/main/header.js"></script>
+</html>

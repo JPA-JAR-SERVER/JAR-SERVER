@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문의사항 상세보기</title>
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/board/inquire/inquire.css">
+    <link rel="stylesheet" href="/css/main/header.css">
+    <link rel="stylesheet" href="/css/main/footer.css">
+    <link rel="icon" href="/image/logo/favicon.png">
+</head>
+<body>
+<div>
+    <main>
+        <div>
+            <th:block th:replace="~{main/header :: header}"></th:block>
+            <div class="login_row">
+                <div class="notice_wrap">
+                    <div class="notice_wrap_div">
+                        <div class="notice_box">
+                            <div class="login">
+                                <div class="notice_text">
+                                    <h4 class="notice_text_h4">문의사항 상세보기</h4>
+                                </div>
+                                <div style="height: 6px;"></div>
+                                <div class="important">
+                                    <div class="important_div">
+                                        <div class="login_row">
+                                            <div style="width: 6px;"></div>
+                                            <div class="new_101" th:text="${inquireDTO.inquireTitle}">매월 새로운 준비물, 지금 바로
+                                                101 서랍에 참여하세요!
+                                            </div>
+                                        </div>
+                                        <p class="year_month_day"
+                                           th:text="${#temporals.format(inquireDTO.createdDate, 'yyyy-MM-dd')}">2023. 4.
+                                            3.</p>
+                                    </div>
+                                    <div class="container-line"></div>
+                                    <div class="imporant_div">
+                                        <div class="login_row">
+                                            <div style="width: 6px;"></div>
+                                            <div class="new_102" th:text="${'작성자 : ' + inquireDTO.memberDTO.memberName}">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <div class="inquire-content">
+                                    </div>
+                                </div>
+                                <div style="height: 6px;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <th:block th:if="${!#strings.isEmpty(inquireDTO.answerDTO)}">
+                        <div class="notice_wrap_div">
+                            <div class="notice_box">
+                                <div class="login">
+                                    <div class="notice_text">
+                                        <h4 class="notice_text_h4">문의사항 답변</h4>
+                                    </div>
+                                    <div style="height: 6px;"></div>
+                                    <div class="important">
+                                        <div class="important_div">
+                                            <div class="login_row">
+                                                <div style="width: 6px;"></div>
+                                            </div>
+                                            <p class="year_month_day"
+                                               th:text="${#temporals.format(inquireDTO.answerDTO.registerDate, 'yyyy/MM/dd')}">
+                                                2023. 4. 3.</p>
+                                        </div>
+                                    </div>
+                                    <div class="content">
+                                        <div class="answer-content">
+                                        </div>
+                                    </div>
+                                    <div style="height: 6px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </th:block>
+                    <th:block th:unless="${!#strings.isEmpty(inquireDTO.answerDTO)}">
+                        <div class="notice_wrap_div">
+                            <div class="notice_box">
+                                <div class="login">
+                                    <div style="display: flex; justify-content: center; align-content: center;">
+                                        <p>아직 답변이 되지않았습니다.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </th:block>
+
+                </div>
+            </div>
+
+            <div class="notice_box">
+                <div class="login">
+                    <div class="go_list">
+                        <a class="return" th:href="@{/board/inquire/list}">
+                            <div class="login_row">
+                                <div style="width: 2px; display: flex;"></div>
+                                <span style="width: 18px; height: 18px;">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                         class="return_svg">
+                                                        <path d="M14.405 4.24H6.509v-2c0-.2-.2-.3-.4-.2L1.112 5.29c-.15.1-.15.3 0 .4L6.11 8.943c.15.1.4 0 .4-.2V6.742h7.946c3.048 0 5.746 2.251 5.996 5.303.35 3.502-2.399 6.454-5.847 6.454H5.26c-.15 0-.25.1-.25.25v2c0 .15.1.251.25.251h9.345c4.547 0 8.295-3.702 8.395-8.255.05-4.702-3.948-8.504-8.595-8.504Z"
+                                                              class="return_path"></path>
+                                                    </svg>
+                                                </span>
+                                <div style="width: 2px; display: flex;"></div>
+                                <div style="width: 0px; height: 0px;"></div>
+                                <div style="width: 4px; display: flex;"></div>
+                                <div style="width: 4px; display: flex;"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div style="height: 72px;"></div>
+        </div>
+</div>
+</div>
+</div>
+<th:block th:replace="~{main/footer :: footer}"></th:block>
+</main>
+</div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script th:inline="javascript">
+    let member = [[${session.member}]];
+    let memberDTO = [[${memberDTO}]];
+    let memberFile = null;
+    if (memberDTO) {
+        memberFile = memberDTO.fileDTO;
+    }
+    const inquireDTO = [[${inquireDTO}]];
+    const answerDTO = inquireDTO.answerDTO;
+    const content = inquireDTO.inquireContent;
+</script>
+<script>
+    if(answerDTO != null || answerDTO != undefined){
+        $(".answer-content").append(contentPrint(answerDTO.answerContent));
+    }
+
+    $(".inquire-content").append(contentPrint(content));
+    function contentPrint(content) {
+        let inquireContent = content.replaceAll("\n", "<br/>");
+        let text = `
+                        <p class="content_p" style="padding-top: 0px;">${inquireContent}</p>
+            `;
+        return text;
+    }
+</script>
+<script src="/js/main/header.js"></script>
+</html>

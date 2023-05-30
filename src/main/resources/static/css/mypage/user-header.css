@@ -1,0 +1,234 @@
+@charset "utf-8";
+
+.mypage-header {
+    padding: 72px 0px 48px;
+}
+
+.my-badge-image-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+}
+
+img.my-badge {
+    width: 45px;
+}
+
+.mypage-header-layout {
+    display: flex;
+    place-content: stretch flex-start;
+    flex-shrink: 1;
+    flex-direction: row;
+    box-sizing: border-box;
+    position: relative;
+    align-items: center;
+}
+
+.mypage-header-profile-box {
+    display: flex;
+    place-content: stretch flex-start;
+    flex-shrink: 0;
+    flex-direction: column;
+    box-sizing: border-box;
+    position: relative;
+    width: 100%;
+    margin-right: 0px;
+    align-items: stretch;
+}
+
+.profile-name {
+    display: flex;
+    align-items: center;
+    font-size: 30px;
+    line-height: 40px;
+    font-weight: 700;
+    color: rgb(26, 26, 26);
+    margin-bottom: 0px;
+}
+
+.normal-font {
+    font-size: 14px;
+    font-weight: normal;
+    color: rgb(26, 26, 26);
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 0px;
+}
+
+.memberEmail-box {
+    color: rgb(162, 162, 162);
+    display: flex;
+    align-items: center;
+}
+
+.header-banner-box {
+    display: none;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: stretch;
+}
+
+.header-image-box {
+    border-radius: 0px;
+    width: 100%;
+    height: 80px;
+    background-color: rgb(0, 0, 0);
+    border-color: rgb(229, 229, 229);
+}
+
+.header-flex-box {
+    display: flex;
+    place-content: stretch flex-start;
+    flex-shrink: 1;
+    flex-direction: column;
+    box-sizing: border-box;
+    position: relative;
+    height: 100%;
+    align-items: stretch;
+}
+
+.mobile-version-image-box {
+    place-content: stretch flex-start;
+    flex-shrink: 1;
+    flex-direction: column;
+    box-sizing: border-box;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    align-items: stretch;
+}
+
+.mobile-version-image {
+    width: 335px;
+    height: 80px;
+    display: block;
+    position: relative;
+}
+
+.mobile-version-image img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    vertical-align: top;
+}
+
+.mypage-banner-image-box {
+    display: none;
+    flex-direction: column;
+    box-sizing: border-box;
+    position: absolute;
+    top: 0px;
+    right: 60px;
+    justify-content: flex-start;
+    align-items: stretch;
+}
+
+.mypage-banner-image {
+    width: 400px;
+    height: 80px;
+    display: block;
+    position: relative;
+}
+
+.mypage-banner-image img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    vertical-align: top;
+}
+
+.mypage-banner-text-box {
+    display: flex;
+    place-content: stretch center;
+    flex-shrink: 1;
+    flex-direction: column;
+    box-sizing: border-box;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    padding-top: 22px;
+    padding-bottom: 22px;
+    margin-left: 24px;
+    align-items: stretch;
+}
+
+.mypage-banner-main-text {
+    display: flex;
+    align-items: stretch;
+}
+
+.mypage-banner-main-text h3 {
+    text-align: left;
+    color: rgb(255, 255, 255);
+    font-size: 0.875rem;
+    line-height: 1.125rem;
+    font-weight: 700;
+}
+
+.mypage-banner-sub-text {
+    display: none;
+    flex-direction: column;
+    box-sizing: border-box;
+    position: relative;
+    margin-top: 4px;
+    justify-content: flex-start;
+    align-items: stretch;
+}
+
+.mypage-banner-sub-text span {
+    text-align: left;
+    color: rgb(255, 255, 255);
+    font-size: 0.6875rem;
+    line-height: 0.875rem;
+    font-weight: 400;
+}
+
+.mypage-wrap {
+    margin-left: 24px;
+    margin-right: 24px;
+    background-color: rgb(255, 255, 255);
+    overflow: hidden;
+}
+
+@media (min-width: 1024px){
+    .header-banner-box {
+        display: flex;
+        align-content: stretch;
+        flex-shrink: 1;
+    }
+
+    .mobile-version-image-box {
+        display: none;
+    }
+
+    .mypage-banner-image-box {
+        display: flex;
+        align-content: stretch;
+        flex-shrink: 1;
+    }
+
+    .mypage-header-profile-box {
+        width: 320px;
+        margin-right: 78px;
+    }
+
+    .mypage-banner-main-text {
+        flex-direction: row;
+    }
+
+    .mypage-banner-sub-text {
+        display: flex;
+        align-content: stretch;
+        flex-shrink: 1;
+    }
+
+    .mypage-wrap {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관리자 페이지- 단체 챌린지 게시판 목록</title>
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/admin/admin_common.css">
+    <link rel="stylesheet" href="/css/admin/sidemenu.css">
+    <link rel="stylesheet" href="/css/admin/admin_board.css">
+    <link rel="stylesheet" href="/css/admin/admin_board_proposal.css">
+    <link rel="icon" href="/image/logo/favicon.png">
+</head>
+
+<body>
+    <div>
+        <div class="info-title-box info-title-box-flex">
+            <div class="logo-box-layout">
+                <div class="logo-box">
+                    <img src="/image/logo/logo.png">
+                </div>
+                <div class="logo-title">
+                    <span>Jar</span>
+                </div>
+            </div>
+            <div>
+                <div class="select-name">
+                    <span>단체 챌린지 게시판 관리</span>
+                </div>
+            </div>
+        </div>
+        <div class="wrap">
+
+            <!-- 사이드 바 -->
+            <div th:replace="~{admin/side_bar :: sidebar}"></div>
+
+            <div class="container">
+                <div class="container-margin">
+                    <!-- 헤더 -->
+
+                    <div class="delete-box-layout">
+                        <div class="delete-box">
+                            <button class="register-button">
+                                <a th:href="@{write}">단체 챌린지 등록</a>
+                            </button>
+                            <button class="deleteButton delete-button" style="font-size: 13px" onclick="deleteGroupChallenges(getSelectedGroupChallengeIds())">선택 게시물 삭제</button>
+                        </div>
+                    </div>
+
+                    <!-- 내용 섹션 -->
+                    <section class="board-info-box-layout">
+
+                        <div class="board-info-box">
+                            <div class="board-info-title-box">
+                                <span>단체 챌린지 게시판 목록</span>
+                            </div>
+
+                            <div class="info-table">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th class="checkbox-line">
+                                                <input type="checkbox" id="allSelect">
+                                            </th>
+                                            <th>No</th>
+                                            <th style="font-size: 14px;font-weight: bold">게시판 제목</th>
+                                            <th>작성 날짜</th>
+                                            <th>상태</th>
+                                        </tr>
+                                    </thead>
+                                    <tr th:each="groupChallengeDTO : ${groupChallengeDTOS}">
+                                        <td class="checkbox-line">
+                                            <input type="checkbox" class="groupChallengeCheckbox" name="check" th:value="${groupChallengeDTO.id}">
+                                        </td>
+                                        <td class="noticeId" th:text="${groupChallengeDTO.id}">
+                                            1
+                                        </td>
+                                        <td>
+                                            <a style="font-size: 15px; font-weight: bold" th:href="@{/admin/board/groupChallenge/detail/{groupChallengeId}(groupChallengeId=${groupChallengeDTO.id})}" th:text="${groupChallengeDTO.boardTitle}">
+                                                게시판 제목
+                                            </a>
+                                        </td>
+                                        <td th:text="${#temporals.format(groupChallengeDTO.createdDate, 'yyyy-MM-dd')}">
+                                        2023.04.23 10:55
+                                        </td>
+                                        <td class="groupChallengeStatus" th:text="${groupChallengeDTO.groupChallengeStatus}">
+                                            진행중
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 페이지 버튼 -->
+                    <div class="page-button-box-layout">
+                        <div class="page-button-box">
+                            <!-- 페이지 번호 -->
+                            <div class="">
+                                <div class="page-button-margin">
+                                    <div>
+                                        <img src="/image/admin/left_icon.png"
+                                            class="left-button">
+                                    </div>
+                                </div>
+                            </div>
+                            <th:block th:each="num : ${#numbers.sequence(pageDTO.startPage, pageDTO.endPage + 1)}">
+                                <a th:class="${(num == pageDTO.startPage) ? 'page-button-active page-button changePage' : 'page-button changePage'}" th:href="${num}">
+                                    <span class="page-button" th:text="${num}"></span>
+                                </a>
+                                <div style="width: 2px;"></div>
+                            </th:block>
+                            <div class="">
+                                <div class="page-button-margin">
+                                    <div>
+                                        <img src="/image/admin/right_icon.png"
+                                            class="right-button">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <th:block>
+                        <form action="list" name="pageForm">
+                            <input type="hidden" name="page">
+                        </form>
+                    </th:block>
+                    <!-- 페이지 버튼 끝 -->
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script src="/js/admin/checkbox.js"></script>
+<script src="/js/admin/board_proposal.js"></script>
+<script src="/js/admin/sidemenu.js"></script>
+<script>
+    const groupChallengeId = '${groupChallengeDTO.groupChallengeId}';
+
+    function getSelectedGroupChallengeIds() {
+        const groupChallengeIds = [];
+        $(".groupChallengeCheckbox:checked").each(function() {
+            groupChallengeIds.push($(this).val());
+        });
+        return groupChallengeIds;
+    }
+
+    function deleteGroupChallenges(groupChallengeIds) {
+        $.ajax({
+            url: "/admin/board/groupChallenge/delete",
+            type: "DELETE",
+            contentType: "application/json",
+            data: JSON.stringify(groupChallengeIds),
+            traditional: true,
+            success: function() {
+                location.reload();
+            },
+            error: function() {
+                alert("게시물 삭제에 실패했습니다.");
+            }
+        });
+    }
+
+
+    /* url에 있는 페이지 번호를 가져와서 css 수정하는 코드*/
+    $(document).ready(function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const currentPage = parseInt(urlParams.get('page'));
+
+        if (currentPage) {
+            $('.page-button').each(function(index, element) {
+                if (parseInt($(element).text()) === currentPage) {
+                    $(element).addClass('page-button-active');
+                } else {
+                    $(element).removeClass('page-button-active');
+                }
+            });
+        }
+    });
+
+
+    $(document).ready(function() {
+        // 삭제 버튼 클릭 이벤트 핸들러
+        $("#deleteButton").on("click", function() {
+            const checkedItems = $(".groupChallengeCheckbox:checked");
+            const groupChallengeIds = [];
+            checkedItems.each(function() {
+                groupChallengeIds.push($(this).val());
+            });
+
+            if (groupChallengeIds.length > 0) {
+                if (confirm("선택한 게시물을 삭제하시겠습니까?")) {
+                    deleteGroupChallenges(groupChallengeIds);
+                }
+            } else {
+                alert("삭제할 게시물을 선택해주세요.");
+            }
+        });
+    });
+
+    //페이지 번호 링크로 가져오는 코드
+    let $pageForm = $("form[name='pageForm']");
+
+    $("a.changePage").on("click", function (e) {
+        e.preventDefault();
+        $pageForm.find("input[name='page']").val($(this).attr("href"));
+        $pageForm.submit();
+    });
+
+    $(".groupChallengeStatus").each((i, e) => {
+
+        if($(e).text() == 'OPEN'){
+            $(e).text("공개");
+        }else if($(e).text() == 'WAIT'){
+            $(e).text("비공개");
+        }else {
+            $(e).text("종료");
+        }
+    })
+</script>
+
+</html>

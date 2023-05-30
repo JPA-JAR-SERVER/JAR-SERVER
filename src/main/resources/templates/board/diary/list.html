@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>다이어리 목록</title>
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/main/header.css">
+    <link rel="stylesheet" href="/css/main/footer.css">
+    <link rel="icon" href="/image/logo/favicon.png">
+    <link rel="stylesheet" href="/css/board/diary/list.css">
+</head>
+<body>
+<div>
+    <th:block th:replace="~{main/header :: header}"></th:block>
+    <div class="list-wrap">
+        <div class="list-container">
+            <div style="position: relative;">
+                <div class="list-title-box">
+                    <div class="list-title-layout">
+                        <h2 class="list-title">공유 다이어리 목록</h2>
+                        <div class="list-sub-title">자신의 다이어리를 공유해보세요.</div>
+                    </div>
+                </div>
+                <div class="list-content-box">
+                    <section class="list-content-wrap">
+                        <div class="popularity-button-box">
+                            <button class="btn recent active">최신순</button>
+                            <button class="btn popular">인기순</button>
+                        </div>
+                        <div>
+                            <div style="height:auto; overflow:auto">
+                                <div style="overflow:hidden">
+                                    <ul class="content-ul">
+                                        <!-- list 들어가는 부분-->
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+    <th:block th:replace="~{main/footer :: footer}"></th:block>
+</div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script th:inline="javascript">
+    let member = [[${session.member}]];
+    let memberDTO = [[${memberDTO}]];
+    let memberFile = null;
+    let memberId;
+
+    if(memberDTO){
+        memberFile = memberDTO.fileDTO;
+    }
+    if (member) {
+        memberId = member.id;
+    }
+</script>
+<script src="/js/main/header.js"></script>
+<script src="/js/board/diary/list.js"></script>
+<script src="/js/board/diary/like-service.js"></script>
+<script src="/js/board/diary/event.js"></script>
+</html>

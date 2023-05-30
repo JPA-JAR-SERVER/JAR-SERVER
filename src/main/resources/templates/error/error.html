@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>500</title>
+    <link rel="icon" href="/image/logo/favicon.png">
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/main/header.css">
+    <link rel="stylesheet" href="/css/main/footer.css">
+    <link rel="stylesheet" href="/css/error/error.css">
+</head>
+<body>
+    <div>
+        <div class="wrap">
+            <!-- 헤더 -->
+            <th:block th:replace="~{main/header :: header}"></th:block>
+            
+            <div class="error-wrap">
+                <h1 class="error-title">접근 권한 오류</h1>
+                <div class="error-sub-title-box">
+                    <div class="error-sub-title-layout">
+                        접근 권한 오류 입니다.
+                        <br>
+                        입력하신 주소가 정확한지 다시 한번 확인해 주세요.
+                    </div>
+                </div>
+                <span class="home-button-box">
+                    <!-- 메인링크 걸기 -->
+                    <a href="/main" class="main-a">
+                        <span class="center-flex">홈으로 가기</span>
+                    </a>
+                </span>
+            </div>
+
+            <!-- 푸터 -->
+            <th:block th:replace="~{main/footer :: footer}"></th:block>
+        </div>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script src="/js/main/header.js"></script>
+</html>

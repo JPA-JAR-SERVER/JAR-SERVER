@@ -1,0 +1,101 @@
+@charset "utf-8";
+
+
+.mypage-all-wrap {
+    margin-left: 24px;
+    margin-right: 24px
+}
+
+.mypage-content-wrap {
+    display: flex;
+    padding-bottom: 64px;
+}
+
+.badge-wrap {
+    padding-top: 24px;
+}
+
+.badge-info-box {
+    border: 1px solid #e1e1e1;
+}
+
+.badge-info-layout {
+    padding: 0 20px;
+}
+
+.badge-flex {
+    display: flex;
+}
+
+.badge-image-box {
+    width: 100%;
+    margin: 10px;
+}
+
+.badge-image-box img {
+    width: 100%;
+}
+
+.badge-column {
+    position: relative;
+}
+
+.badge-info {
+    position: absolute;
+    bottom: 5%;
+    left: 40px;
+}
+
+.badge-info span {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.content-title-box {
+    margin-bottom: 20px;
+}
+
+.badge-section {
+    margin-bottom: 20px;
+}
+
+.mypage-status-box {
+    display: flex;
+    height: 200px;
+    width: 100%;
+}
+
+.mypage-diary-day-box {
+    border-right: 1px solid #e1e1e1;
+    width: 50%;
+}
+
+.mypage-diary-day-layout {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.mypage-diary-day {
+    font-weight: 700;
+    font-size: 30px;
+}
+
+.my-badge-image {
+    display: flex;
+    justify-content: center;
+}
+
+.my-badge-image img {
+    width: 190px;
+}
+
+@media (min-width:1024px) {
+    .mypage-all-wrap {
+        max-width: 1176px;
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}

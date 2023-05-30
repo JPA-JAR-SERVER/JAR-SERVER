@@ -1,0 +1,32 @@
+@charset "utf-8";
+
+.alert-modal-display {
+    display: none;
+    z-index: 100000;
+}
+
+.alert-modal-box {
+    height: 40px;
+    position: fixed;
+    z-index: 5001;
+    background: #043A44;
+    color : #fff;
+}
+
+.diary-modal {
+    position: absolute;
+    inset: 0px;
+    z-index: 10000;
+}
+
+
+
+@media (min-width: 960px) {
+    .alert-modal-box { 
+        top: 50%;
+        left: 50%;
+        width: 400px;
+        transform: translate(-50%, -50%);
+        animation: 0.25s ease 0s 1 normal none running openModal;
+    }
+}

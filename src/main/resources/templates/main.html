@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JAR-메인</title>
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/main/header.css">
+    <link rel="stylesheet" href="/css/main/footer.css">
+    <link rel="stylesheet" href="/css/main/main.css">
+    <link rel="stylesheet" href="https://uicdn.toast.com/tui.time-picker/latest/tui-time-picker.css" />
+    <link rel="stylesheet" href="https://uicdn.toast.com/tui.date-picker/latest/tui-date-picker.css" />
+    <link rel="stylesheet" href="https://uicdn.toast.com/tui.pagination/latest/tui-pagination.css" />
+    <link rel="stylesheet" href="https://uicdn.toast.com/calendar/latest/toastui-calendar.min.css" />
+    <link rel="stylesheet" href="https://uicdn.toast.com/tui-grid/latest/tui-grid.css"/>
+    <link rel="icon" href="/image/logo/favicon.png">
+    <link rel="stylesheet" href="/css/board/challenge/challenge-list.css">
+</head>
+<body>
+    <div>
+        <div>
+            <div style="position:relative;">
+                <!-- 헤더 -->
+                <th:block th:replace="~{main/header :: header}"></th:block>
+                <div class="main-wrap">
+                    <div>
+                        <div class="banner-wrap">
+                            <div class="banner-container banner-background">
+                                <div class="banner-text"></div>
+                                <div class="banner-back-image-box">
+                                    <img src="https://cdn.class101.net/images/69ac96c1-9d60-4316-9f1b-79311e667b78/tiny.jpg" class="banner-back-image">
+                                </div>
+                                <div class="banner-position"></div>
+                                <div class="banner-box">
+                                    <div class="banner-size">
+                                        <div class="banner-image-box">
+                                            <div class="banner-image-box-layout">
+                                                <div class="banner-image-container">
+                                                    <div class="banner-image-wrap">
+                                                        <div class="banner-mobileChecking" style="display:none"></div>
+                                                        <!--  배너 넣는 곳 slide.js 참고-->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="slide-text-wrap">
+                                            <a href="javascript:void(0)" class="slide-text-link">
+                                                <!-- 배너 텍스트 넣는 곳 -->
+                                                <p class="slide-main-text">LOVERS #1 
+                                                    이연이라는 잭팟
+                                                </p>
+                                                <p class="slide-sub-text">
+                                                    ‘이연’으로 어디까지 갈 수 있을까
+                                                </p>
+                                            </a>
+                                            <div class="slide-button-box">
+                                                <!-- 배너 총 갯수 및 진행중인 배너 번호 -->
+                                                <span class="banner-index-box">
+                                                    <span class="banner-index">01</span>
+                                                    <span class="banner-count">04</span>
+                                                </span>
+                                                <div class="banner-slide-line-box" delay="15000">
+                                                    <div class="banner-slide-move-line"></div>
+                                                </div>
+                                                <button type="button" id="prev" class="banner-arrow-button">
+                                                    <span class="banner-arrow">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M15.5 5.5l-6 6.5 6 6.5L14 20l-7.5-8L14 4l1.5 1.5z" fill="#fff"></path></svg>
+                                                    </span>
+                                                </button>
+                                                <button type="button" id="next" class="banner-arrow-button">
+                                                    <span class="banner-arrow">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M8.5 18.5l6-6.5-6-6.5L10 4l7.5 8-7.5 8-1.5-1.5z" fill="#fff"></path></svg>
+                                                    </span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="main-content-wrap suggest-wrap"> 
+                            <section class="suggest-image-box">
+                                <a th:href="@{/board/suggest/list}" class="suggest-image-layout">
+                                    <div class="suggest-text-box">
+                                        <p>하고싶은 챌린지가 있다면 어떻게 해야할까?</p>
+                                        <h2>챌린지를 제안해 좋아요 순위에 따라 출시 될 수 있어요.</h2>
+                                    </div>
+                                </a>
+                            </section>
+                        </div>
+                        <div class="main-content-wrap group-wrap">
+                            <section class="group-section">
+                                <div class="main-content-title-box">
+                                    <!-- 해당 게시판 링크 -->
+                                    <a th:href="@{/board/challenge/group/list}">
+                                        <div class="main-content-title-layout">
+                                            <h2 class="main-content-title">진행중인 그룹 챌린지</h2>
+                                        </div>
+                                    </a>
+                                    <span class="go-to-list-box">
+                                        <a th:href="@{/board/challenge/group/list}" class="list-a">
+                                            <span class="auto-flex">전체 그룹 챌린지 보기</span>
+                                        </a>
+                                    </span>
+                                </div>
+                                <div class="content-slide-box">
+                                    <div style="position: relative;">
+                                        <button type="button" class="content-arrow-button" id="content-prev">
+                                            <span class="auto-flex">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M15.5 5.5l-6 6.5 6 6.5L14 20l-7.5-8L14 4l1.5 1.5z" fill="#1a1a1a"></path></svg>
+                                            </span>
+                                        </button>
+                                        <div class="content-wrap">
+                                            <div class="content-slide-box-container first-content-slide">
+                                                <!-- 자료 뿌려 줄 곳 -->
+                                            </div>
+                                        </div>
+                                        <button type="button" class="content-next-arrow-button" id="content-next">
+                                            <span class="auto-flex">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M8.5 18.5l6-6.5-6-6.5L10 4l7.5 8-7.5 8-1.5-1.5z" fill="#1a1a1a"></path></svg>
+                                            </span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </section>
+                            <section class="calendar-section">
+                                <div class="calendar-box">
+                                    <div style="display:flex;">
+                                        <h3 class="calendar-year year"></h3>
+                                        <h3 class="calendar-year month"></h3>
+                                    </div>
+                                    <div style="display: flex;">
+                                        <div class="calendar-button-box">
+                                            <button type="button" class="btn btn-padding" id="today">
+                                                <p class="auto-flex">TODAY</p>
+                                            </button>
+                                        </div>
+                                        <div class="calendar-button-box">
+                                            <button type="button" id="calender-prev" class="btn">
+                                                <span class="auto-flex">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M15.5 5.5l-6 6.5 6 6.5L14 20l-7.5-8L14 4l1.5 1.5z" fill="#1a1a1a"></path></svg>
+                                                </span>
+                                            </button>
+                                        </div>
+                                        <div>
+                                            <button type="button" id="calender-next" class="btn">
+                                                <span class="auto-flex">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M8.5 18.5l6-6.5-6-6.5L10 4l7.5 8-7.5 8-1.5-1.5z" fill="#1a1a1a"></path></svg>
+                                                </span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="calendar"></div>
+                            </section> 
+                        </div>
+                        <div class="main-content-wrap">
+                            <section class="next-section">
+                                <div class="main-content-title-box">
+                                    <!-- 해당 게시판 링크 -->
+                                    <a th:href="@{/board/suggest/list}">
+                                        <div class="main-content-title-layout">
+                                            <h2 class="main-content-title">제안 챌린지</h2>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div style="position: relative;">
+                                    <button type="button" class="content-arrow-button" id="second-prev" style="top: calc((100% - 84px)/2);">
+                                        <span class="auto-flex">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M15.5 5.5l-6 6.5 6 6.5L14 20l-7.5-8L14 4l1.5 1.5z" fill="#1a1a1a"></path></svg>
+                                        </span>
+                                    </button>
+                                    <div class="content-wrap content-padding">
+                                        <div class="content-slide-box-container second-content-slide">
+                                            <!-- 자료 뿌려 줄 곳 -->
+                                        </div>
+                                    </div>
+                                    <button type="button" class="content-next-arrow-button" id="second-next" style="top: calc((100% - 84px)/2);">
+                                        <span class="auto-flex">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M8.5 18.5l6-6.5-6-6.5L10 4l7.5 8-7.5 8-1.5-1.5z" fill="#1a1a1a"></path></svg>
+                                        </span>
+                                    </button>
+                                </div>
+                            </section>
+                        </div>
+                        <div class="main-content-wrap">
+                            <section class="challenge-content-box">
+                                <div class="challenge-content-title-box">
+                                    <!-- 해당 게시판 링크 -->
+                                    <a href="javascript:void(0)">
+                                        <div class="main-content-title-layout">
+                                            <h2 class="main-content-title">
+                                                🔥 오늘의 챌린지
+                                            </h2>
+                                        </div>
+                                        <p class="challenge-content-sub-title">
+                                            오늘 도전해야 할 챌린지 목록이에요.
+                                        </p>
+                                    </a>
+                                </div>
+                                <div class="challenge-content">
+                                    <div style="overflow: hidden;">
+                                        <ul class="challenge-content-ul">
+                                            <!-- 하나의 묶음 -->
+                                            <div class="challenge-wrapper">
+                                                <div class="challenge-line" top="[object Object]" right="0" buttom="0" left="0"></div>
+                                                <div class="challenge-wrapper-main">
+                                                    <div class="challenge-wrapper-main-box">
+
+                                                        <ul smcolumn="2" class="challenge-wrapper-list">
+                                                        </ul>
+
+                                                    </div>
+                                                    <div></div>
+                                                </div>
+                                            </div>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                        <div class="main-content-wrap"></div>
+                    </div>
+                </div>
+                <th:block th:replace="~{main/footer :: footer}"></th:block>
+            </div>
+        </div>
+    </div>
+
+    <!-- 회원탈퇴 모달 -->
+    <div class="main-info-display">
+        <div class="main-info-modal">
+            <div class="modal-back"></div>
+            <div class="main-info-modal-box">
+                <h1 class="main-info-main-title">
+                    <div style="flex-grow: 1;">본 사이트는 학습용 사이트입니다.</div>
+                </h1>
+                <div class="main-info-sub-title">아래 사항을 확인 부탁드립니다 😊</div>
+                <div class="main-info-sub-content">1. 회원 가입 및 서비스 이용을 금지합니다.
+                </div>
+                <div class="main-info-sub-content">2. 위 내용을 무시하고 서비스 이용 중 손해 발생 시 저희 JAR측은 책임 지지 않습니다.</div>
+                <div style="display: flex; justify-content: end; margin-top:30px;">
+                    <div style="display: flex;">
+                        <label style="display: flex;">
+                            <input type="checkbox" class="agree-check">
+                            <p class="main-info-sub-content" style="margin-left: 5px; margin-bottom: 2px;">동의하시면 체크해주세요.</p>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script th:inline="javascript">
+    let member = [[${session.member}]];
+    let memberDTO = [[${memberDTO}]];
+    let memberFile = null;
+    const groupChallengeDTOS = [[${groupChallengeDTOS}]];
+    const calendarDTOS = [[${calendarDTOS}]];
+    if (memberDTO) {
+        memberFile = memberDTO.fileDTO;
+    }
+
+    let memberId;
+    if (member) {
+        memberId = member.id;
+    }
+</script>
+<script>
+    globalThis.groupChallengeLength;
+    globalThis.suggestLength;
+
+    let $mainModal = $(".main-info-display");
+
+    $(".agree-check").click(() => {
+        if($(".agree-check").prop("checked")){
+            $mainModal.hide();
+        }
+    });
+</script>
+<script src="/js/main/header.js"></script>
+<script src="/js/main/slide.js"></script>
+<script src="/js/main/main.js"></script>
+<script src="/js/board/suggest/like-service.js"></script>
+<script src="/js/main/main-suggest.js"></script>
+<script src="https://uicdn.toast.com/tui.time-picker/latest/tui-time-picker.js"></script>
+<script src="https://uicdn.toast.com/tui.date-picker/latest/tui-date-picker.js"></script>
+<script src="https://uicdn.toast.com/calendar/latest/toastui-calendar.min.js"></script>
+<script src="https://uicdn.toast.com/tui-grid/latest/tui-grid.js"></script>
+<script src="https://uicdn.toast.com/tui.pagination/latest/tui-pagination.js"></script>
+<script src="/js/main/calendar.js"></script>
+<script src="/js/main/main-like-button.js"></script>
+<script src="/js/board/challenge/personal/list.js"></script>
+<script src="/js/main/groupChallenge.js"></script>
+</html>

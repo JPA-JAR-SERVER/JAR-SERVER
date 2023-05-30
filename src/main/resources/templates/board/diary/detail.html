@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>다이어리 상세보기</title>
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/main/header.css">
+    <link rel="stylesheet" href="/css/main/footer.css">
+    <link rel="stylesheet" href="/css/board/diary/detail.css">
+    <link rel="icon" href="/image/logo/favicon.png">
+</head>
+<body>  
+    <div class="__next">
+        <div id="wrapper">
+            <div class="wrapper">
+                <th:block th:replace="~{main/header :: header}"></th:block>
+                <div class="wrapper-container">
+                    <div>
+                        <div>
+                            <div class="image-container">
+                                <div class="image-container-layout">
+                                    <div class="image-container-layout-box">
+                                        <div class="image-container-wrapper">
+                                            <div class="image-container-wrapper-box">
+                                                <!-- 이미지 들어가는 곳-->
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="main-container">
+                            <div style="display:flex; margin-top: 15px; align-items: center;">
+                                <a href="/board/diary/list">
+                                    <p class="location-info"style="padding-right: 5px;">공유 다이어리 목록</p>
+                                </a>
+                                <p class="location-info" style="padding-top: 1px;">공유 다이어리 게시판</p>
+                            </div>
+                            <div class="main-container-wrapper">
+                                <div class="main-container-wrapper-layout">
+                                    <div class="container-wrapper">
+                                        <div>
+                                            <div class="container-wrapper-main">
+                                                <div class="container-wrapper-main-box">
+                                                    <div class="user-container-box user">
+                                                        <div class="user-container-box-1">
+                                                            <h3 class="user-box-1 user-1-box box-1-user" md="Headline3" font-weight="nomal">
+                                                                <!-- 다이어리 제목 이름 -->
+                                                                <strong th:text="${diaryDTO.boardTitle}"></strong>
+                                                            </h3>
+                                                        </div>
+                                                        <th:block th:if="${not #strings.isEmpty(session.member)}">
+                                                            <th:block th:if="${session.member.id == diaryDTO.memberDTO.id}">
+                                                                <div class="user-container-box-2" size="64">
+                                                                    <button class="challenge-button-check diary-modify-button" icon-position="0" color="default" fill="true">
+                                                                        <span>수정</span>
+                                                                    </button>
+                                                                </div>
+                                                            </th:block>
+                                                        </th:block>
+                                                    </div>
+                                                </div>
+                                                <div class="text-container">
+                                                    <div class="text-container-box">
+                                                        <div class="text-container-box-layout" size="384">
+                                                            <div class="text-container-box-layout-box">
+                                                                <div class="text-container-box-layout-box-text">
+                                                                    <p class="diary-content" th:text="${diaryDTO.boardContent}"></p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="main-box-line"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- 댓글 -->
+                                    <div>
+                                        <div class="reply-container">
+                                            <div class="reply-container-wrap" data-test-id="fold-community-original">
+                                                <div class="reply-container-wrap-box">
+                                                    <br>
+                                                    <div class="reply-container-box">
+                                                        <div class="reply-container-box-layout">
+                                                            <div class="reply-container-box-layout">
+                                                                <div class="reply-box-container">
+                                                                    <!--댓글-->
+
+                                                                </div>
+                                                            </div>
+                                                            <th:block th:if="${not #strings.isEmpty(session.member)}">
+                                                                <div class="reply-container-box-layout">
+                                                                    <div>
+                                                                        <div class="reply-form">
+                                                                            <div class="reply-form-container">
+                                                                                <div class="reply-form-container-box">
+                                                                            <textarea name="content" id="" cols="30", maxlength="80"
+                                                                                      rows="1" placeholder="댓글을 입력해주세요."
+                                                                                      class="reply-content"></textarea>
+                                                                                </div>
+                                                                            </div>
+                                                                            <button
+                                                                                    class="reply-from-button-1 reply-from-button-2 register-button"
+                                                                                    type="button" kind="textGray">
+                                                                                <div class="reply-from-button-box">
+                                                                            <span class="reply-from-button-box-span">
+                                                                                <svg width="24" height="24" fill="none"
+                                                                                     viewBox="0 0 24 24">
+                                                                                    <path fill-rule="evenodd"
+                                                                                          d="M6 11h4a1 1 0 110 2H6v6l13-7L6 5v6zm.948 9.761C5.616 21.478 4 20.513 4 19V5c0-1.513 1.616-2.478 2.948-1.761l13 7c1.402.755 1.402 2.767 0 3.522l-13 7z"
+                                                                                          fill="#e5e5e5"></path>
+                                                                                </svg>
+                                                                            </span>
+                                                                                </div>
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </th:block>
+                                                            <button class="the-bogi" icon-position="0" color="default"
+                                                                    fill="true">
+                                                                <span class="the-bogi-span">더 보기</span>
+                                                            </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <th:block th:replace="~{main/footer :: footer}"></th:block>
+            </div>
+        </div>
+    </div>
+
+    <!-- 이미지 확대 -->
+    <div class="image-expansion-display" style="display:none;">
+        <div class="image-expansion" zindex="3000" overlaycolor="rgba(0, 0, 0, 0.72)">
+            <div class="image-expansion-container">
+                <button icon-position="0" color="white" class="image-expansion-container-cancel cancel-button cancel-button-layout">
+                    <div position="0" buttonsize="lg" class="cancel-button-box">
+                        <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><path d="M18.5 4L12 10.5 5.5 4 4 5.5l6.5 6.5L4 18.5 5.5 20l6.5-6.5 6.5 6.5 1.5-1.5-6.5-6.5L20 5.5 18.5 4z" fill="#FFF"></path></svg>
+                    </div>
+                    <span class="cancel-button-span">
+                        <span>닫기</span>
+                    </span>
+                </button>
+                <div class="image-expansion-container-wrapper">
+                    <div class="image-expansion-count">
+                        <div class="count-first">01</div>
+                        <div class="count-second"></div>
+                        <div class="all-count">10</div>
+                    </div>
+                    <div class="image-expansion-wrapper">
+                        <div class="image-expansion-wrapper-main">
+                            <div class="swiper-wrapper">
+                                <!-- 이미지 들어가는 곳 -->
+
+                            </div>
+                            <div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets">
+                                <!-- 번호 들어가는 곳 -->
+                            </div>
+                        </div>
+                        <button class="image-expansion-wrapper-prev" direction="left">
+                            <svg width="48" height="48" fill="none" viewBox="0 0 24 24">
+                                <path fill-rule="evenodd" d="M15.5 5.5l-6 6.5 6 6.5L14 20l-7.5-8L14 4l1.5 1.5z" fill="#FFF"></path>
+                            </svg>
+                        </button>
+                        <button class="image-expansion-wrapper-next" direction="right">
+                            <svg width="48" height="48" fill="none" viewBox="0 0 24 24">
+                                <path fill-rule="evenodd" d="M8.5 18.5l6-6.5-6-6.5L10 4l7.5 8-7.5 8-1.5-1.5z" fill="#FFF"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script th:inline="javascript">
+    let member = [[${session.member}]];
+    let memberDTO = [[${memberDTO}]];
+    let memberFile = null;
+    let memberId;
+
+    if(memberDTO){
+        memberFile = memberDTO.fileDTO;
+    }
+
+    if(member){
+        memberId = member.id;
+    }
+
+    const diaryDTO = [[${diaryDTO}]];
+    const boardId = diaryDTO.id;
+    const fileDTOS = [[${diaryDTO.fileDTOS}]];
+
+    const $imageBox = $(".image-container-wrapper-box");
+
+    $(".diary-modify-button").click(() => {
+        location.href=`/board/diary/modify/` + boardId;
+    });
+
+</script>
+<script src="/js/main/header.js"></script>
+<script src="/js/board/suggest/slide.js"></script>
+<script src="/js/board/diary/image-function.js"></script>
+<script src="/js/board/diary/reply-service.js"></script>
+<script src="/js/board/reply/reply.js"></script>
+</html>

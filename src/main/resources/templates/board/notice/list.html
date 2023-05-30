@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자르-공지사항 목록</title>
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/board/main/footer.css">
+    <link rel="stylesheet" href="/css/login/notice.css">
+    <link rel="icon" href="/image/logo/favicon.png">
+    <link rel="stylesheet" href="/css/main/header.css">
+    <link rel="stylesheet" href="/css/main/footer.css">
+</head>
+<body>
+    <div style="position: relative; z-index: 0;">
+        <main>
+            <div class="main">
+                <div class="login">
+                    <!--헤더-->
+                    <th:block th:replace="~{main/header :: header}"></th:block>
+
+                    <div class="row">
+                        <div class="div_notice">
+                            <div class="login">
+                                <div class="notice_box">
+                                    <h4 class="notice_h4">공지사항</h4>
+                                    <div style="height: 24px;"></div>
+                                    <div class="login">
+                                        <div class="notice_inbox">
+                                            <div class="login"><!--  -->
+                                                <div class="login"><!-- 공지사항 목록 -->
+                                                    <div class="login_margin" th:each="noticeDTO : ${noticeDTOS}">
+                                                        <a class="login_margin_a" th:href="@{detail/{id}(id=${noticeDTO.id})}">
+                                                            <div class="notice_list">
+                                                                <p class="notice_list_p" th:text="${noticeDTO .noticeTitle}">매월 새로운 준비물, 지금 바로 101 서랍에 참여하세요!</p>
+                                                                <div class="align">
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+
+                                                    <div class="important_div"></div>
+                                                    <!-- 공지사항 집어넣는곳 -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="height: 24px;"></div>
+                                        <div class="align">
+                                            <nav class="center_row">
+                                                <div class="paging-layout" style="display: flex">
+                                                    <a class="left_arrow changePage" th:if="${pageDTO.prev}" th:href="${pageDTO.startPage - 1}">
+                                                        <span class="left_arrow_span">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="left_arrow_svg">
+                                                                <path d="M15.1 2.55 16.5 4c.1.1.1.25 0 .35L8.85 12l7.65 7.65c.1.1.1.25 0 .35l-1.4 1.4c-.1.1-.25.1-.35 0L5.5 12.15c-.1-.1-.1-.25 0-.35l9.25-9.25c.1-.05.25-.05.35 0Z"></path>
+                                                            </svg>
+                                                        </span>
+                                                    </a>
+                                                    <div style="width: 16px; display: flex;"></div>
+                                                    <div class="row">
+<!--                                                        <a class=" second_button changePage" th:if="${pageDTO.pageNum == num}" th:href="${pageDTO.startPage}">-->
+<!--                                                            <span class="button_number" th:text="${pageDTO.startPage}"></span>-->
+<!--                                                        </a>-->
+                                                        <div style="width: 2px;"></div>
+                                                        <th:block th:each="num : ${#numbers.sequence(pageDTO.startPage, pageDTO.endPage + 1)}">
+                                                            <a th:class="${num == pageDTO.startPage} ? 'first_button second_button changePage' : 'second_button changePage'" th:href="${num}">
+                                                                <span class="button_number" th:text="${num}"></span>
+                                                            </a>
+                                                            <div style="width: 2px;"></div>
+                                                        </th:block>
+                                                    </div>
+
+                                                    <div style="width: 16px; display: flex;"></div>
+                                                    <a class="right_arrow changePage" th:if="${pageDTO.next}" th:href="${pageDTO.endPage + 1}">
+                                                        <span class="wid_hei">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="right_arrow_svg">
+                                                                <path d="M8.905 21.45 7.505 20c-.1-.1-.1-.25 0-.35l7.65-7.65-7.65-7.65c-.1-.1-.1-.25 0-.35l1.4-1.4c.1-.1.25-.1.35-.05l9.25 9.3c.1.1.1.25 0 .35l-9.25 9.25c-.1.05-.25.05-.35 0Z" class="css-0"></path>
+                                                            </svg>
+                                                        </span>
+                                                    </a>
+
+
+                                                </div>
+
+                                                <th:block>
+                                                    <form action="/board/notice/list"  name="pageForm">
+                                                        <input type="hidden" name="page">
+                                                    </form>
+                                                </th:block>
+                                            </nav>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="height: 72px;"></div>
+                    </div>
+                    <!-- 푸터 넣는곳 -->
+                    <th:block th:replace="~{main/footer :: footer}"></th:block>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script th:inline="javascript">
+    let member = [[${session.member}]];
+    let memberDTO = [[${memberDTO}]];
+    let memberFile = null;
+    if(memberDTO){
+        memberFile = memberDTO.fileDTO;
+    }
+</script>
+<script>
+    $(document).ready(function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const currentPage = parseInt(urlParams.get('page'));
+
+        if (currentPage) {
+            $('.second_button').each(function(index, element) {
+                if (parseInt($(element).text()) === currentPage) {
+                    $(element).addClass('first_button');
+                } else {
+                    $(element).removeClass('first_button');
+                }
+            });
+        }
+    });
+
+    //페이지 번호 링크로 가져오는 코드
+    let $pageForm = $("form[name='pageForm']");
+
+    $("a.changePage").on("click", function (e) {
+        e.preventDefault();
+        $pageForm.find("input[name='page']").val($(this).attr("href"));
+        $pageForm.submit();
+    });
+</script>
+<script src="/js/main/header.js"></script>
+</html>

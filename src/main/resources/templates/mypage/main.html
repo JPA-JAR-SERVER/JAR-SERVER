@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마이페이지-메인</title>
+    <link rel="stylesheet" href="/css/mypage/user-header.css">
+    <link rel="stylesheet" href="/css/main/header.css">
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="https://uicdn.toast.com/tui.time-picker/latest/tui-time-picker.css" />
+    <link rel="stylesheet" href="https://uicdn.toast.com/tui.date-picker/latest/tui-date-picker.css" />
+    <link rel="stylesheet" href="https://uicdn.toast.com/tui.pagination/latest/tui-pagination.css" />
+    <link rel="stylesheet" href="https://uicdn.toast.com/calendar/latest/toastui-calendar.min.css" />
+    <link rel="stylesheet" href="https://uicdn.toast.com/tui-grid/latest/tui-grid.css" />
+    <link rel="stylesheet" href="/css/mypage/mypage-main.css">
+    <link rel="icon" href="/image/logo/favicon.png">
+    <link rel="stylesheet" href="/css/mypage/alert.css">
+    <link rel="stylesheet" href="/css/mypage/side-menu.css">
+    <link rel="stylesheet" href="/css/main/footer.css">
+    <style>
+        .toastui-calendar-weekday-event {
+            height: 80px!important;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <!-- main/header.html -->
+        <div id="header" style="position: sticky; top: 0; z-index: 100;" th:insert="~{main/header :: header}"></div>
+
+        <div>
+            <div class="mypage-all-wrap">
+                <!-- user-header.html -->
+                <div id="mypage-header" th:replace="~{mypage/user-header :: user-header}"></div>
+
+                <div class="mypage-content-wrap">
+                    <!-- side-menu.html -->
+                    <div id="side-menu" th:replace="~{mypage/side-menu :: sidebar}"></div>
+
+                    <div class="mypage-content-container">
+                        <div class="mypage-content-box">
+                            <section>
+                                <div class="content-title-box">
+                                    <div class="flex-center">
+                                        <h3 class="content-title">나의 다이어리</h3>
+                                    </div>
+                                </div>
+                                <div class="diary-list-box">
+                                    <div class="calendar-box">
+                                        <div style="display:flex;">
+                                            <h3 class="calendar-year year"></h3>
+                                            <h3 class="calendar-year month"></h3>
+                                        </div>
+                                        <div style="display: flex;">
+                                            <div class="calendar-button-box">
+                                                <button type="button" class="btn btn-padding" id="today">
+                                                    <p class="auto-flex">TODAY</p>
+                                                </button>
+                                            </div>
+                                            <div class="calendar-button-box">
+                                                <button type="button" id="calender-prev" class="btn">
+                                                    <span class="auto-flex">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                            fill="none" viewBox="0 0 24 24">
+                                                            <path fill-rule="evenodd"
+                                                                d="M15.5 5.5l-6 6.5 6 6.5L14 20l-7.5-8L14 4l1.5 1.5z"
+                                                                fill="#1a1a1a"></path>
+                                                        </svg>
+                                                    </span>
+                                                </button>
+                                            </div>
+                                            <div>
+                                                <button type="button" id="calender-next" class="btn">
+                                                    <span class="auto-flex">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                            fill="none" viewBox="0 0 24 24">
+                                                            <path fill-rule="evenodd"
+                                                                d="M8.5 18.5l6-6.5-6-6.5L10 4l7.5 8-7.5 8-1.5-1.5z"
+                                                                fill="#1a1a1a"></path>
+                                                        </svg>
+                                                    </span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div id="calendar" style="height: 600px;"></div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- main/footer.html -->
+        <th:block th:replace="~{main/footer :: footer}"> </th:block>
+    </div>
+
+    <!-- 다이어리 입력 창 -->
+    <div class="diary-modal-display">
+        <div class="diary-modal">
+            <div class="modal-back"></div>
+            <div class="diary-modal-box">
+                <h1 class="diary-main-title">
+                    <div style="flex-grow: 1;" class="title">다이어리 작성하기</div>
+                    <div class="exit-icon exit-withdraw">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path
+                                d="M18.5 4L12 10.5 5.5 4 4 5.5l6.5 6.5L4 18.5 5.5 20l6.5-6.5 6.5 6.5 1.5-1.5-6.5-6.5L20 5.5 18.5 4z"
+                                fill="#cacaca"></path>
+                        </svg>
+                    </div>
+                </h1>
+                <div>
+                    <form th:action="@{/mypage/register}" method="post" enctype="multipart/form-data" name="form">
+                    <div class="box">
+                        <h4 class="date"></h4>
+                        <div class="flex-box">
+                            <div>
+                                <label>
+                                    <input type="file" style="display:none;" class="file" multiple>
+                                    <div class="file-image-box">
+                                        <img src="/image/mypage/instagram_icon.png">
+                                        <p>사진 첨부</p>
+                                    </div>
+                                </label>
+                            </div>
+                            <div>
+                                <label>
+                                    <input type="checkbox" style="display:none;" name="diaryStatus" value="PRIVATE">
+                                    <div class="private-check-box">
+                                        <div class="private-check-layout">
+                                            <p>
+                                                비공개
+                                            </p>
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+                            <button type="button" class="insert-button save-button">저장</button>
+                        </div>
+                    </div>
+                    <div class="input-box">
+                        <div class="align-flex">
+                            <div>
+                                <input type="text" name="boardTitle" placeholder="제목을 입력하세요." class="diary-title">
+                            </div>
+                        </div>
+                        <div class="diary-content-box">
+                            <div>
+                                <textarea name="boardContent" placeholder="내용을 입력해주세요." class="diary-content"></textarea>
+                            </div>
+                        </div>
+                        <div class="attachment-box">
+                            <ul class="attachment-layout sumnail-box">
+                                <!-- 썸네일 들어가는 부분 -->
+                            </ul>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 잠깐 나왓다 사라지는 알람창 -->
+    <div class="alert-modal-display">
+        <div class="diary-modal">
+            <div class="alert-modal-box" style="width: 500px;">
+                <div style="text-align: center;">
+                    <div style="margin-top: 12px;">
+                        <span class="alert"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 다이어리 상세보기 모달 -->
+    <div class="diary-detail-display">
+        <div class="diary-modal">
+            <div class="modal-back"></div>
+            <div class="diary-modal-box">
+                <h2 class="diary-main-title">
+                    <div style="flex-grow: 1;">📖 다이어리</div>
+                    <div class="exit-icon exit-withdraw">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path
+                                d="M18.5 4L12 10.5 5.5 4 4 5.5l6.5 6.5L4 18.5 5.5 20l6.5-6.5 6.5 6.5 1.5-1.5-6.5-6.5L20 5.5 18.5 4z"
+                                fill="#cacaca"></path>
+                        </svg>
+                    </div>
+                </h2>
+                <div class="diary-detail-title-box">
+                    <h2 class="diary-main-title space-between">
+                        <div style="flex-grow: 1;" class="diary-content-title">다이어리 제목</div>
+                        <div class="diary-detail-modify-box">
+                            <button class="modify-button" style="font-size: 15px; margin-right: 10px; font-weight: bold;" type="button">수정</button>
+                            <form action="" class="delete-form" style="display: flex; align-items: center;" method="post">
+                                <button class="delete-button"style="font-size: 15px;  font-weight: bold;" type="submit">삭제</button>
+                            </form>
+                        </div>
+                    </h2>
+                    <div class="diary-detail-date-box">
+                        <h4 class="diary-detail-date"></h4>
+                    </div>
+                    <div class="flex">
+                        <div>
+                            <ul class="sumnail-layout" style="padding: 0; margin-top: 30px;">
+                                <!-- 이미지 들어가는 부분-->
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="diary-detail-content-box">
+                        <ul class="diary-detail-ul">
+                            <!-- 상세보기 내용 들어가는 부분 -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script src="https://uicdn.toast.com/tui.time-picker/latest/tui-time-picker.js"></script>
+<script src="https://uicdn.toast.com/tui.date-picker/latest/tui-date-picker.js"></script>
+<script src="https://uicdn.toast.com/calendar/latest/toastui-calendar.min.js"></script>
+<script src="https://uicdn.toast.com/tui-grid/latest/tui-grid.js"></script>
+<script src="https://uicdn.toast.com/tui.pagination/latest/tui-pagination.js"></script>
+<script th:inline="javascript">
+    let member = [[${session.member}]];
+    let memberFile = [[${memberDTO.fileDTO}]];
+    // const userDetail = [[${userDetail}]];
+    const calendarDTOS = [[${calendarDTOS}]];
+    const urlParams = new URL(location.href).searchParams;
+    const check = urlParams.get('check');
+
+    if(check){
+        $(".alert").text("저장 완료");
+        $(".alert-modal-display").fadeIn();
+        setTimeout(function () {
+            $(".alert-modal-display").fadeOut();
+        }, 2000);
+    }
+</script>
+<script src="/js/mypage/file.js"></script>
+<script>
+    // 여기는 신경 안써도 됨
+    const Calendar = tui.Calendar;
+    const container = document.getElementById('calendar');
+    const options = {
+        defaultView: 'month',
+        isReadOnly : true,
+        month: {
+            dayNames: ['Sun', 'Mon', 'Tus', 'Wen', 'Thr', 'Fri', 'Sat'],
+            isAlways6Weeks: false,
+            startDayOfWeek: 1,
+        },
+        timezone: {
+            zones: [
+                {
+                    timezoneName: 'Asia/Seoul',
+                    displayLabel: 'Seoul',
+                },
+            ],
+        },
+        theme: {
+            month: {
+                dayName: {
+                    borderLeft: 'none',
+                    backgroundColor: '#36f',
+                },
+                moreView: {
+                    border: '1px solid grey',
+                    boxShadow: '0 2px 6px 0 grey',
+                    backgroundColor: 'white',
+                    width: 320,
+                    height: 200,
+                },
+                gridCell: {
+                    footerHeight: 31,
+                },
+            },
+        },
+        calendars: [
+            {
+                id: '1',
+                name: '개인',
+                backgroundColor: '#03bd9e',
+            },
+            {
+                id: '2',
+                name: '개인',
+                backgroundColor: '#36f',
+            },
+            {
+                id: '3',
+                name: '개인',
+                backgroundColor: 'rgb(255, 64, 64)',
+            }
+            , {
+                id: '4',
+                name: '개인',
+                backgroundColor: 'rgb(255, 85, 131)',
+            }
+        ],
+    };
+
+    const calendar = new Calendar(container, options);
+
+    calendarDTOS.forEach((e, i) => {
+        calendar.createEvents([
+            e
+        ]);
+    });
+
+    // ==================================================== 캘린더 버튼
+    const month = calendar.getDate().getMonth() + 1;
+    const year = calendar.getDate().getFullYear();
+    const day = calendar.getDate().getDate();
+
+    $(".year").text(year + "년");
+    $(".month").text(month + "월");
+
+    // prev button
+    $("#calender-prev").click(() => {
+        currentDate = calendar.getDate();
+
+        var prevDate = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1);
+        var prevYear = prevDate.getFullYear();
+        var prevMonthIndex = prevDate.getMonth();
+
+        $(".year").text(prevYear + "년");
+        $(".month").text(prevMonthIndex + 1 + "월");
+
+        calendar.prev();
+    });
+
+    // next button
+    $("#calender-next").click(() => {
+        currentDate = calendar.getDate();
+
+        var nextDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1);
+        var nextMonthIndex = nextDate.getMonth();
+        var nextYear = nextDate.getFullYear();
+
+        $(".year").text(nextYear + "년");
+        $(".month").text(nextMonthIndex + 1 + "월");
+
+        calendar.next();
+    })
+
+    // today button
+    $("#today").click(() => {
+        $(".year").text(year + "년");
+        $(".month").text(month + "월");
+
+        calendar.today();
+    });
+
+
+    $(document).ready(() => {
+        // 각 day박스
+        $(".toastui-calendar-daygrid-cell").each((i, e) => {
+            let errorMsg = "오늘 날짜의 일기만 작성이 가능합니다.";
+
+            $(e).click(() => {
+                currentDate = calendar.getDate();
+                let calendarYear = currentDate.getFullYear();
+
+                let calendarMonth = currentDate.getMonth() + 1;
+                calendarMonth = calendarMonth < 10 ? "0" + calendarMonth : calendarMonth;
+
+                let calendarDay = $($(".toastui-calendar-weekday-grid-date")[i]).text();
+                calendarDay = calendarDay < 10 ? "0" + calendarDay : calendarDay;
+
+                var date = calendarYear + "-" + calendarMonth + "-" + calendarDay;
+                if (calendarMonth != month || calendarDay != day) {
+                    alertModal(errorMsg);
+                    return false;
+                }
+
+                $(".title").text("다이어리 작성하기");
+                $(".diary-modal-display").show();
+                $(".date").text(date);
+                $("form[name=form]").attr("action", "/mypage/register")
+            });
+        });
+
+    });
+
+    // 제목 클릭 시 발생하는 이벤트
+    calendar.on("clickEvent", function (e) {
+        // id 값으로 다이어리 상세조회 ajax써야함 모델 객체가 아닌 rest
+        // 해당 id값의 정보를 가져와서 상세보기쪽에 뿌려야함 가져와야할 정보 이미지 정보, 제목, 내용
+        let boardId = e.event.id;
+        let date = new Date(e.event.start);
+
+        diaryService.diary({
+            boardId : boardId,
+        },function(diaryDTO){
+            $(".diary-content-title").text(diaryDTO.boardTitle);
+            $(".modify-button").attr("id", 'modify' + boardId);
+            $(".delete-form").attr("action", "/mypage/diary-delete?boardId=" + boardId);
+            let content = diaryDTO.boardContent;
+            contentPrint(content);
+
+
+            let fileDTOS = diaryDTO.fileDTOS;
+            let text = '';
+            fileDTOS.forEach((file, i) => {
+                 text += `
+                                <li>
+                                    <div style="position:relative;">
+                                        <img style="width: 216px; height: 167px;" src="/file/display?fileName=${file.filePath}/${file.fileUuid}_${file.fileOriginalName}">
+                                    </div>
+                                </li>
+                `;
+            });
+            $(".sumnail-layout").html(text);
+        })
+        date = dateFomat(date);
+        // 날짜 담아주기
+        $(".diary-detail-date").text(date);
+        $(".diary-detail-display").show();
+    });
+
+    //input 창
+    let $diaryTitle = $(".diary-title");
+    let $diaryContent = $(".diary-content");
+    let $diaryButton = $(".insert-button");
+
+    $diaryTitle.keyup(() => {
+        inputCheck();
+    });
+
+    $diaryContent.keyup(() => {
+        inputCheck();
+    });
+
+    // 공개 비공개 
+    const $check = $("input[type=checkbox]");
+    const $checkbox = $(".private-check-box");
+    const $checkText = $(".private-check-layout p");
+
+    $checkbox.click(() => {
+        if(!$check.is(":checked")){
+            $checkbox.addClass("check-active");
+            $checkText.text("공개");
+            $check.val("OPEN");
+        }else {
+            $checkbox.removeClass("check-active");
+            $checkText.text("비공개");
+            $check.val("PRIVATE");
+        }
+    });
+    
+    // =========================================================================
+    // function  
+
+    function diaryModal(index) {
+        $(".diary-title").val("");
+        $(".diary-content").val("");
+        $(".date").text("");
+        $(".diary-modal-display").hide();
+        $($(".toastui-calendar-daygrid-cell")[index]).css("pointer-events", "none");
+    }
+
+    function dateFomat(date) {
+
+        let year = date.getFullYear();
+        let month = date.getMonth() + 1;
+        month = month < 10 ? "0" + month : month;
+        let day = date.getDate();
+        day = day < 10 ? "0" + day : day;
+
+        return year + "년 " + month + "월 " + day + "일"
+    }
+
+    function contentPrint(content) {
+        let test = content.replaceAll("\n", "<br/>").split("<br/>");
+        let text = "";
+        let $ul = $(".diary-detail-ul");
+
+        test.forEach((e, i) => {
+
+            text += `
+                        <li class="diary-detail-content">${e}</li>
+            `;
+        });
+        $ul.html(text);
+    }
+
+    function content() {
+        let text = "";
+        $(".diary-detail-content").each((i, e) => {
+            text += $(e).text() + "\n";
+        });
+        return text;
+    }
+
+    function inputCheck() {
+        if(!$diaryTitle.val() || !$diaryContent.val()){
+            $diaryButton.removeClass("save-active");
+        }else {
+            $diaryButton.addClass("save-active");
+        }
+    }
+
+
+    // =================================================
+    // 모달
+
+    // 다이어리 나가기 버튼
+    $(".exit-icon").click(() => {
+        $(".diary-modal-display").hide();
+        $(".diary-detail-display").hide();
+        $(".diary-title").val("");
+        $(".diary-content").val("");
+        $diaryButton.removeClass("save-active");
+    });
+
+    // #f1d89f;
+
+    // 다이어리 나가기 버튼
+    $(".modal-back").click(() => {
+        $(".diary-modal-display").hide();
+    });
+
+    // 다이어리 수정 버튼
+    $(".modify-button").click((e) => {
+        let boardId = e.currentTarget.id.replaceAll("modify", "");
+        $checkbox.addClass("check-active");
+        $diaryButton.addClass("save-active");
+        $checkText.text("공개");
+
+        diaryService.diary({
+            boardId : boardId,
+        },function(diaryDTO){
+            $("form[name=form]").attr("action", "/mypage/diary-modify?boardId=" + diaryDTO.id);
+            $(".title").text("다이어리 수정하기");
+            $(".date").text($(".diary-detail-date").text());
+            let content = diaryDTO.boardContent;
+            let title = diaryDTO.boardTitle;
+            $(".diary-title").val(title);
+            $(".diary-content").text(content);
+
+            let fileDTOS = diaryDTO.fileDTOS;
+            files = fileDTOS;
+            let text = '';
+            fileDTOS.forEach((file, i) => {
+                text += `
+                                <li id="${i}">
+                                    <div style="position:relative;">
+                                        <div class="image-cancel-box close-button">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24">
+                                                <path d="M18.5 4L12 10.5 5.5 4 4 5.5l6.5 6.5L4 18.5 5.5 20l6.5-6.5 6.5 6.5 1.5-1.5-6.5-6.5L20 5.5 18.5 4z"
+                                                    fill="#cacaca"></path>
+                                            </svg>
+                                        </div>
+                                    <img src="/file/display?fileName=${file.filePath}/${file.fileUuid}_${file.fileOriginalName}" class="inserted_img">
+                                    </div>
+                                </li>
+                `;
+            });
+            $(".sumnail-box").html(text);
+        });
+        $(".diary-modal-display").show();
+        $(".diary-detail-display").hide();
+    });
+
+
+    // function deleteDiaryMain(diaryId){
+    //     $.ajax({
+    //         url:`/mypage/delete-main/${diaryId}`,
+    //         tpye: "DELETE",
+    //         contentType: "application/json",
+    //         data: JSON.stringify(diaryId),
+    //         traditional: true,
+    //         success: function(result){
+    //             result.
+    //         }
+    //     })
+    // }
+
+// ================================================
+</script>
+<script src="/js/main/header.js"></script>
+</html>

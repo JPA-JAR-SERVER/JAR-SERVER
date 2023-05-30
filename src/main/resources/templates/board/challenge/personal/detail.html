@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>개인 챌린지 상세보기</title>
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/main/header.css">
+    <link rel="stylesheet" href="/css/main/footer.css">
+    <link rel="stylesheet" href="/css/board/challenge/challenge.css">
+    <link rel="icon" href="/image/logo/favicon.png">
+</head>
+<body>
+<div class="__next">
+    <div id="wrapper">
+        <div class="wrapper">
+
+            <th:block th:replace="~{main/header :: header}"></th:block>
+
+            <div class="wrapper-container">
+                <div>
+                    <div>
+                        <div class="image-container">
+                            <div class="image-container-layout">
+                                <div class="image-container-layout-box">
+                                    <div class="image-container-wrapper">
+                                        <div class="image-container-wrapper-box" gutter="6">
+                                            <div class="image-main-container" width="58.8" height="519px">
+                                                <div class="image-main-container-box">
+                                                    <picture class="image-container-picture">
+                                                        <!-- 메인 이미지 넣는곳-->
+                                                        <img src="" class="main-picture image">
+                                                    </picture>
+                                                </div>
+                                            </div>
+                                            <div class="image-sub-container" direction="column" gutter="6">
+                                                <div class="image-sub-container-wrap-1" height="50%">
+                                                    <div class="image-sub-container-wrap-1-box">
+                                                        <picture class="image-container-picture sub-image">
+                                                            <!--sub2 Image-->
+                                                            <img class="sub-image1 image"
+                                                                 src="https://cdn.class101.net/images/e16f5209-bf9a-49c4-b429-bfa8792bfb51">
+                                                        </picture>
+                                                    </div>
+                                                </div>
+                                                <div class="image-sub-container-wrap-2" gutter="6">
+                                                    <div class="image-sub-container-wrap-2-box" width="50%">
+                                                        <div class="image-sub-container-wrap-2-box-layout">
+                                                            <div class="image-sub-box">
+                                                                <picture class="image-container-picture">
+                                                                    <img class="sub-image2 image"
+                                                                         src="https://cdn.class101.net/images/f0174cd5-20aa-4f44-98e0-11c63e77457b">
+                                                                </picture>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="image-sub-container-wrap-2-box" width="50%">
+                                                        <div class="image-sub-container-wrap-2-box-layout">
+                                                            <picture class="image-container-picture">
+                                                                <img class="sub-image3 image"
+                                                                     src="https://cdn.class101.net/images/427cc92b-0752-4194-9e86-b1fc36082db1">
+                                                            </picture>
+                                                        </div>
+                                                        <div class="sub-image-container-plus image" font-weight="700"
+                                                             color="#FFF">
+                                                            <p class="remaining-image-count"></p>
+                                                            <br>
+                                                            이미지
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="display:flex; margin-top: 15px; align-items: center;">
+                                    <a href="/board/challenge/personal/list">
+                                        <p class="location-info" style="padding-right: 5px;">개인 챌린지 게시판 목록</p>
+                                    </a>
+                                    <p class="location-info" style="padding-top: 1px;">개인 챌린지 게시판</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="main-container">
+                        <div class="main-container-wrapper">
+                            <div class="main-container-wrapper-layout">
+                                <div class="container-wrapper">
+                                    <div>
+                                        <div class="container-wrapper-main">
+                                            <div class="container-wrapper-main-box">
+                                                <section class="main-information-box">
+                                                    <h2 class="">챌린지 정보</h2>
+                                                    <dl class="main-information-box-wrap">
+                                                        <dt class="box-information-title">챌린지 분류</dt>
+                                                        <dd class="box-information-content">개인 챌린지</dd>
+                                                    </dl>
+                                                </section>
+                                                <div class="user-container-box user">
+                                                    <div class="user-container-box-1">
+                                                        <h3 class="user-box-1 user-1-box box-1-user" md="Headline3"
+                                                            font-weight="nomal">
+                                                            <!-- 챌린지 이름 -->
+                                                            <strong th:text="${personalChallengeDTO.challengeDTO.boardTitle}"></strong>
+                                                        </h3>
+                                                    </div>
+                                                    <div class="user-container-box-2 end-challenge" size="64" style="display: none;">
+                                                        <div >
+                                                            <p>종료된 챌린지 입니다.</p>
+                                                        </div>
+                                                    </div>
+                                                    <th:block th:if="${not #strings.isEmpty(session.member)}">
+                                                        <div class="user-container-box-2 current-challenge" size="64">
+                                                            <button class="attend-button challenge-button-check diary-modify-button"
+                                                                    icon-position="0" color="default" fill="true">
+                                                                <span>도전하기</span>
+                                                            </button>
+                                                            <div class="challenge-button-box">
+                                                                <div style="display: flex">
+                                                                    <button style="margin-right: 10px;"
+                                                                            class="complete-button challenge-button-check diary-modify-button"
+                                                                            icon-position="0" color="default"
+                                                                            fill="true">
+                                                                        <span>도전완료</span>
+                                                                    </button>
+                                                                    <button class="attend-cancel challenge-button-check diary-modify-button"
+                                                                            icon-position="0" color="default"
+                                                                            fill="true">
+                                                                        <span>도전취소</span>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                            <div class="challenge-complete">
+                                                                <p>이미 완료된 챌린지 입니다.</p>
+                                                            </div>
+                                                        </div>
+                                                    </th:block>
+                                                </div>
+                                            </div>
+                                            <div class="text-container">
+                                                <div class="text-container-box">
+                                                    <div class="text-container-box-layout" size="384">
+                                                        <div class="text-container-box-layout-box">
+                                                            <div class="text-container-box-layout-box-text">
+                                                                <p class="diary-content" th:text="${personalChallengeDTO.challengeDTO.boardContent}"></p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="main-box-line"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 댓글 -->
+                                <div>
+                                    <div class="reply-container">
+                                        <div class="reply-container-wrap" data-test-id="fold-community-original">
+                                            <div class="reply-container-wrap-box">
+                                                <br>
+                                                <div class="reply-container-box">
+                                                    <div class="reply-container-box-layout">
+                                                        <div class="reply-box-container">
+                                                            <!--댓글-->
+
+                                                        </div>
+                                                    </div>
+                                                    <th:block th:if="${not #strings.isEmpty(session.member)}">
+                                                        <div class="reply-container-box-layout">
+                                                            <div>
+                                                                <div class="reply-form">
+                                                                    <div class="reply-form-container">
+                                                                        <div class="reply-form-container-box">
+                                                                            <textarea name="content" id="" cols="30" ,
+                                                                                      maxlength="80"
+                                                                                      rows="1" placeholder="댓글을 입력해주세요."
+                                                                                      class="reply-content"></textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                    <button
+                                                                            class="reply-from-button-1 reply-from-button-2 register-button"
+                                                                            type="button" kind="textGray">
+                                                                        <div class="reply-from-button-box">
+                                                                            <span class="reply-from-button-box-span">
+                                                                                <svg width="24" height="24" fill="none"
+                                                                                     viewBox="0 0 24 24">
+                                                                                    <path fill-rule="evenodd"
+                                                                                          d="M6 11h4a1 1 0 110 2H6v6l13-7L6 5v6zm.948 9.761C5.616 21.478 4 20.513 4 19V5c0-1.513 1.616-2.478 2.948-1.761l13 7c1.402.755 1.402 2.767 0 3.522l-13 7z"
+                                                                                          fill="#e5e5e5"></path>
+                                                                                </svg>
+                                                                            </span>
+                                                                        </div>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </th:block>
+                                                    <button class="the-bogi" icon-position="0" color="default"
+                                                            fill="true">
+                                                        <span class="the-bogi-span">더 보기</span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- footer -->
+            <th:block th:replace="~{main/footer :: footer}"></th:block>
+
+        </div>
+    </div>
+</div>
+
+<!-- 이미지 확대 -->
+<div class="image-expansion-display" style="display:none;">
+    <div class="image-expansion" zindex="3000" overlaycolor="rgba(0, 0, 0, 0.72)">
+        <div class="image-expansion-container">
+            <button icon-position="0" color="white"
+                    class="image-expansion-container-cancel cancel-button cancel-button-layout">
+                <div position="0" buttonsize="lg" class="cancel-button-box">
+                    <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        <path d="M18.5 4L12 10.5 5.5 4 4 5.5l6.5 6.5L4 18.5 5.5 20l6.5-6.5 6.5 6.5 1.5-1.5-6.5-6.5L20 5.5 18.5 4z"
+                              fill="#FFF"></path>
+                    </svg>
+                </div>
+                <span class="cancel-button-span">
+                        <span>닫기</span>
+                    </span>
+            </button>
+            <div class="image-expansion-container-wrapper">
+                <div class="image-expansion-count">
+                    <div class="count-first">01</div>
+                    <div class="count-second"></div>
+                    <div class="all-count">10</div>
+                </div>
+                <div class="image-expansion-wrapper">
+                    <div class="image-expansion-wrapper-main">
+                        <div class="swiper-wrapper">
+                            <!-- 이미지 들어가는 곳 -->
+
+                        </div>
+                    </div>
+                    <button class="image-expansion-wrapper-prev" direction="left">
+                        <svg width="48" height="48" fill="none" viewBox="0 0 24 24">
+                            <path fill-rule="evenodd" d="M15.5 5.5l-6 6.5 6 6.5L14 20l-7.5-8L14 4l1.5 1.5z"
+                                  fill="#FFF"></path>
+                        </svg>
+                    </button>
+                    <button class="image-expansion-wrapper-next" direction="right">
+                        <svg width="48" height="48" fill="none" viewBox="0 0 24 24">
+                            <path fill-rule="evenodd" d="M8.5 18.5l6-6.5-6-6.5L10 4l7.5 8-7.5 8-1.5-1.5z"
+                                  fill="#FFF"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script th:inline="javascript">
+    let member = [[${session.member}]];
+    let memberDTO = [[${memberDTO}]];
+    let memberFile = null;
+    let memberId;
+
+    if(memberDTO){
+        memberFile = memberDTO.fileDTO;
+    }
+    if (member) {
+        memberId = member.id;
+    }
+
+    const personalChallengeDTO = [[${personalChallengeDTO}]];
+    const challengeDTO = personalChallengeDTO.challengeDTO;
+    const boardId = personalChallengeDTO.id;
+    if(personalChallengeDTO.challengeStatus == 'PRIVATE'){
+        $(".end-challenge").show();
+        $(".current-challenge").hide();
+    }
+
+    const fileDTOS = challengeDTO.fileDTOS;
+    const $mainImage = $(".main-picture");
+    $mainImage.attr("src", `/file/display?fileName=${fileDTOS[0].filePath}/${fileDTOS[0].fileUuid}_${fileDTOS[0].fileOriginalName}`)
+
+    const $subImage1 = $(".sub-image1");
+    $subImage1.attr("src", `/file/display?fileName=${fileDTOS[1].filePath}/${fileDTOS[1].fileUuid}_${fileDTOS[1].fileOriginalName}`)
+    const $subImage2 = $(".sub-image2");
+    $subImage2.attr("src", `/file/display?fileName=${fileDTOS[2].filePath}/${fileDTOS[2].fileUuid}_${fileDTOS[2].fileOriginalName}`)
+    const $subImage3 = $(".sub-image3");
+    $subImage3.attr("src", `/file/display?fileName=${fileDTOS[3].filePath}/${fileDTOS[3].fileUuid}_${fileDTOS[3].fileOriginalName}`)
+    if (fileDTOS.length - 4 != 0) {
+        $(".remaining-image-count").text("+ " + (fileDTOS.length - 4) + "개");
+    } else {
+        $(".sub-image-container-plus").hide();
+    }
+
+</script>
+<script src="/js/board/suggest/slide.js"></script>
+<script src="/js/board/challenge/personal/reply-service.js"></script>
+<script src="/js/board/reply/reply.js"></script>
+<script src="/js/board/challenge/personal/attend-service.js"></script>
+<script src="/js/main/header.js"></script>
+</html>

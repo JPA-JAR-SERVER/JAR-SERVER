@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자르-휴대폰 번호 인증</title>
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/login/phone-certification.css">
+    <link rel="icon" href="/image/logo/favicon.png">
+</head>
+<body>
+    <div class="all_wrap_div">
+        <header class="header">
+            <div class="header_div">
+                <div class="class101_outside">
+                    <div class="class101_inside">
+                        <img style="width: 90px;" src="/image/logo/logo.png">
+                    </div>
+                </div>
+            </div>
+        </header>
+    </div>
+    <div class="middle_wrap">
+        <div class="middle_wrap_div">
+            <div class="middle_box">
+                <div class="middle_box_div">
+                    <div class="phone">
+                        <div class="phone_div">
+                            <h3 class="phone_h3">휴대폰 인증</h3>
+                        </div>
+                    </div>
+                    <div class="login">
+                        <p class="all_p">
+                            가입을 위해 본인의
+                            <br>
+                            휴대폰 번호를 인증해 주세요.
+                        </p>
+                        <div class="hei_38"></div>
+                        <form style="width: auto; height: auto;">
+                            <div class="login">
+                                <div class="login_div">
+                                    <div class="phone_number">
+                                        <label>
+                                            <div class="login">
+                                                <div class="login">
+                                                    <input type="tel" name="phone_number" placeholder="-를 제외한 휴대폰 번호" maxlength="15">
+                                                </div>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div style="height: 24px; display: flex;"></div>
+                                <button type="button" class="confirm_number">
+                                    <div class="flex_visi">
+                                        <div class="hei_4"></div>
+                                        <span class="confirm_number_span">
+                                            <p class="confirm_number_span_p">인증번호 받기</p>
+                                        </span>
+                                        <div class="hei_4"></div>
+                                    </div>
+                                </button>
+                            </div>
+                        </form>
+                        <div style="height: 48px; display: flex;"></div>
+                        <!-- 이 아래가 인증번호 누를시 나오는 곳 -->
+                        <div class="semi_modal">
+                            <p class="message_p">문자로 전송된 인증번호를 입력해 주세요.</p>
+                            <div style="height: 20px; display: flex;"></div>
+                            <form style="width: auto; height: auto;">
+                                <label>
+                                    <div class="login">
+                                        <div class="login">
+                                            <div class="confirm_box">
+                                                <input type="tel" name="phone_number_confirm" placeholder="인증번호 6자리">
+                                            <!--  <div> 인증번호 옆에 타이머 부분
+                                                    <div>
+                                                        <div>
+                                                            <p></p>
+                                                        </div>
+                                                    </div>
+                                                </div> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </label>
+                                <div style="height: 16px; display: flex;"></div>
+                                <button class="down_confirm">
+                                    <div class="flex_visi">
+                                        <div style="width: 4px; display: flex;"></div>
+                                        <span class="confirm_number_span">
+                                            <p class="certification">인증번호 확인</p>
+                                        </span>
+                                        <div style="width: 4px; display: flex;"></div>
+                                    </div>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    
+$(".confirm_number").click(function(){
+    $(".semi_modal").css('display', 'block');
+    $(".confirm_number_span_p").text("인증번호 다시 받기");
+});
+
+const inputDown = document.querySelector('input[name="phone_number_confirm"]');
+const buttonDown = document.querySelector('.down_confirm');
+
+inputDown.addEventListener('input', function() {
+  if (inputDown.value) {
+    buttonDown.style.backgroundColor = "rgb(255, 93, 0)";
+  } 
+  else {
+    buttonDown.style.backgroundColor = "rgba(0, 0, 0, 0.1)";
+  }
+});
+
+const inputUp = document.querySelector('input[name="phone_number"]');
+const buttonUp = document.querySelector('.confirm_number');
+
+inputUp.addEventListener('input', function() {
+  if (inputUp.value) {
+    buttonUp.style.backgroundColor = "rgb(255, 93, 0)";
+  } 
+  else {
+    buttonUp.style.backgroundColor = "rgba(0, 0, 0, 0.1)";
+  }
+});
+
+
+</script>
+</html>

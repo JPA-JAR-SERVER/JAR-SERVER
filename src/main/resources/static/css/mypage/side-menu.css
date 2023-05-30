@@ -1,0 +1,43 @@
+@charset "utf-8";
+
+.side-menu-wrap {
+    min-width: 320px;
+    margin-right: 78px;
+}
+
+.side-menu-box {
+    margin-bottom: 48px;
+}
+
+.normal-title {
+    font-size: 18px;
+    font-weight: normal;
+    color: rgb(26, 26, 26);
+    line-height: 24px;
+    letter-spacing: -0.45px;
+    margin: 0px;
+}
+
+.side-menu-title {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    margin-bottom: 16px;
+}
+
+.side-menu-sub-title-box {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0px;
+}
+
+.side-menu-sub-title {
+    font-size: 14px;
+    font-weight: normal;
+    color: rgb(26, 26, 26);
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 0px;
+}

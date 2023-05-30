@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>다이어리 수정</title>
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/board/diary/diary.css">
+    <link rel="stylesheet" href="/css/board/diary/modify.css">
+    <link rel="stylesheet" href="/css/main/header.css">
+    <link rel="stylesheet" href="/css/main/footer.css">
+    <link rel="icon" href="/image/logo/favicon.png">
+</head>
+</head>
+<body>
+<div>
+    <th:block th:replace="~{main/header :: header}"></th:block>
+    <div class="modify-wrap">
+        <div class="modify-container">
+            <div>
+                <div class="title-box">
+                    <h2>다이어리 수정</h2>
+                </div>
+                <form th:action="@{/board/diary/modify(boardId = ${diaryDTO.id})}" method="post"
+                      enctype="multipart/form-data" name="form">
+                    <div style="display:flex; justify-content: space-between;">
+                        <div class="date-box">
+                            <h3 class="date">2022-04-19</h3>
+                        </div>
+                        <div class="flex-box">
+                            <div>
+                                <label>
+                                    <input type="file" style="display:none;" class="file" multiple>
+                                    <div class="file-image-box">
+                                        <img src="/image/mypage/instagram_icon.png">
+                                        <p>사진 첨부</p>
+                                    </div>
+                                </label>
+                            </div>
+                            <div>
+                                <label>
+                                    <input type="checkbox" class="diary-status" name="diaryStatus" style="display:none;"
+                                           th:value="${diaryDTO.diaryStatus}">
+                                    <div class="private-check-box check-active">
+                                        <div class="private-check-layout">
+                                            <p>
+                                                공개
+                                            </p>
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+                            <button type="button" class="insert-button modify-button">수정</button>
+                        </div>
+                    </div>
+                    <div class="modify-box">
+                        <div class="modify-layout">
+                            <div class="input-box">
+                                <div class="align-flex">
+                                    <div>
+                                        <input type="text" name="boardTitle" placeholder="제목을 입력하세요."
+                                               class="diary-title" th:value="${diaryDTO.boardTitle}">
+                                    </div>
+                                </div>
+                                <div class="diary-content-box">
+                                    <div>
+                                        <textarea name="boardContent" placeholder="내용을 입력해주세요." class="diary-content">[[${diaryDTO.boardContent}]]</textarea>
+                                    </div>
+                                </div>
+                                <div class="attachment-box">
+                                    <ul class="attachment-layout sumnail-box">
+                                        <!-- 썸네일 들어가는 부분 -->
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <th:block th:replace="~{main/footer :: footer}"></th:block>
+</div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script th:inline="javascript">
+    let member = [[${session.member}]];
+    let memberDTO = [[${memberDTO}]];
+    let memberFile = null;
+    if(memberDTO){
+        memberFile = memberDTO.fileDTO;
+    }
+    const diaryDTO = [[${diaryDTO}]];
+    const fileDTOS = diaryDTO.fileDTOS;
+
+    if (diaryDTO.diaryStatus == 'PRIVATE') {
+        $(".diary-status").prop("checked", false);
+        $(".diary-status").val("PRIVATE");
+    } else {
+        $(".diary-status").prop("checked", true);
+        $(".diary-status").val("OPEN");
+    }
+</script>
+<script src="/js/main/header.js"></script>
+<script src="/js/mypage/file.js"></script>
+<script src="/js/board/diary/modify.js"></script>
+</html>

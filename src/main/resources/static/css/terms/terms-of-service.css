@@ -1,0 +1,148 @@
+@charset "utf-8";
+
+.wrap {
+    border-radius: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    border-color: #E5E5E5;
+}
+
+.other-wrap {
+    display: flex;
+    width: 100%;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+
+
+
+.bundle-of-terms {
+    display: flex;
+    width: 100%;
+    max-width: 1216px;
+    padding-left: 20px;
+    padding-right: 20px;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: column;
+}
+
+.content-of-terms h2{
+    font-size: 1.625rem;
+    line-height: 2.25rem;
+    font-weight: 700;
+    color: #0c0c0c;
+    margin-top: 36px;
+}
+
+.content-of-terms ul{
+    font-size: 1rem;
+    line-height: 1.75rem;
+    font-weight: 400;
+}
+
+.content-of-terms ul>li {
+    margin: 0 0 4px 0;
+    padding-left: 24px;
+    position: relative;
+    color: #0c0c0c;
+}
+
+.small-bundle {
+    display: flex;
+    width: 100%;
+    margin-top: 90px;
+    margin-bottom: 90px;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: column;
+}
+
+.title-terms {
+    display: flex;
+    margin-bottom: 20px;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.title-write {
+    border-width: 0;
+    color: #0c0c0c;
+    margin: 0;
+    padding: 0;
+    font-size: 1.625rem;
+    font-weight: 700;
+    line-height: 2.25rem;
+}
+
+.content-wrap {
+    display: flex;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: column;
+}
+
+/* p태그 */
+.content-wrap p {
+    font-size: 1.125rem;
+    line-height: 1.875rem;
+    font-weight: 400;
+    color: #0c0c0c;
+    padding-top: 8px;
+}
+
+.term-date {
+    border-width: 0;
+    color: #0c0c0c;
+    margin: 0;
+    padding: 0;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.25rem;
+    text-align: right;
+}
+
+.blank-one {
+    width: 0;
+    height: 30px;
+    -webkit-box-flex: 0;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+div {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+}
+
+blank-two{
+    width: 0;
+    height: 30px;
+    -webkit-box-flex: 0;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+.under-terms {
+    display: flex;
+}
+
+.look-before{
+    border-width: 0;
+    color: #0c0c0c;
+    margin: 0;
+    padding: 0;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.25rem;
+}

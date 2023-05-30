@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>제안게시판 - 수정</title>
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/main/header.css">
+    <link rel="stylesheet" href="/css/main/footer.css">
+    <link rel="stylesheet" href="/css/board/proposal/common.css">
+    <link rel="stylesheet" href="/css/board/proposal/write.css">
+    <link rel="stylesheet" href="/css/mypage/alert.css">
+    <link rel="icon" href="/image/logo/favicon.png">
+    <style>
+        .challenge-box {
+            display: flex;
+            margin-bottom: 10px;
+        }
+
+        .challenge-button {
+            display: flex;
+            width: 90px;
+            height: 30px;
+            border-radius: 8px;
+            background-color: #f1f1f1;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .challenge-box label:first-child {
+            margin-right: 10px;
+        }
+
+        .challenge-text {
+            font-size: 12px;
+        }
+
+        .challenge-box label.radio-active {
+            background-color: #4F6DF5;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+<div class="body_wrapper">
+    <th:block th:replace="~{main/header :: header}"></th:block>
+    <section class="list_wrapper">
+        <div class="body-wrap">
+            <div class="body-wrap-box">
+                <div class="board-name">
+                    <div class="board-name-line"></div>
+                    <div class="board_name-box">
+                        <a href="javascript:void(0)" target="_blank"><!-- 리스트로 돌아가는 링크 -->
+                            <h2>챌린지 제안 게시판</h2>
+                        </a>
+                    </div>
+                </div>
+                <div class="body-main">
+                    <div class="body-main-box">
+                        <div class="body-mian-box-in">
+                            <div class="body-mian-box-in-box is-no-scroll">
+                                <div class="body-mian-box-in-box-in">
+                                    <div class="real-wrap">
+                                        <div class="real-wrap-box">
+                                            <div class="real-wrap-box-box">
+                                                <div class="pasing-wrapper">
+                                                    <button type="button"
+
+                                                            icon-position="0" color="white" fill="false"
+                                                            class="pasing-button-1 pasing-no-select return-detail"
+                                                            style="background-color: #fff;">
+                                                            <span class="pasing-button-span">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                     height="24" fill="none" viewBox="0 0 24 24">
+                                                                    <path
+                                                                            d="M18.5 4L12 10.5 5.5 4 4 5.5l6.5 6.5L4 18.5 5.5 20l6.5-6.5 6.5 6.5 1.5-1.5-6.5-6.5L20 5.5 18.5 4z"
+                                                                            fill="#cacaca"></path>
+                                                                </svg>
+                                                            </span>
+                                                    </button>
+                                                </div>
+                                                <div class="box-header">
+                                                    <h3>챌린지 제안 게시글 수정</h3>
+                                                </div>
+                                                <div class="box-main">
+                                                    <div class="box-main-wrap">
+                                                        <form th:action="@{/board/suggest/modify(boardId = ${suggestDTO.id})}" method="post"
+                                                              enctype="multipart/form-data" name="form">
+                                                            <div class="box-main-wrpa-list">
+                                                                <div style="display:flex; flex-direction: column;">
+                                                                    <div class="box-line file_insert_wrapper is-flex">
+                                                                        <label class="file_insert_label">
+                                                                            <input type="file" style="display:none;"
+                                                                                   class="file" multiple>
+                                                                            <div class="file-image-box">
+                                                                                <!-- <img src="/image/mypage/instagram_icon.png"> -->
+                                                                                <p>사진 첨부</p>
+                                                                            </div>
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="challenge-box">
+                                                                        <label class="challenge-button radio-active">
+                                                                            <div>
+                                                                                <input type="radio"
+                                                                                       style="display:none;"
+                                                                                       name="boardType" checked
+                                                                                       value="PERSONAL">
+                                                                                <div class="challenge-text">개인 챌린지</div>
+                                                                            </div>
+                                                                        </label>
+                                                                        <label class="challenge-button">
+                                                                            <div>
+                                                                                <input type="radio"
+                                                                                       style="display:none;"
+                                                                                       name="boardType" value="GROUP">
+                                                                                <div class="challenge-text">단체 챌린지</div>
+                                                                            </div>
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                                <label>
+                                                                    <div class="box-main-title">
+                                                                        <input type="text" name="boardTitle"
+                                                                               class="main-title"
+                                                                               placeholder="제목을 입력해주세요." th:value="${suggestDTO.boardTitle}">
+                                                                    </div>
+                                                                </label>
+                                                                <div class="box-line"></div>
+                                                                <div class="box-main-body">
+                                                                    <span class="box-main-body-span"></span>
+                                                                    <div class="editor-wrap">
+                                                                            <textarea name="boardContent" cols="30"
+                                                                                      rows="10"
+                                                                                      class="proposal_content is-no-scroll"
+                                                                                      placeholder="내용을 입력해주세요.">[[${suggestDTO.boardContent}]]</textarea>
+                                                                        <section class="img_wrapper_box">
+                                                                            <div class="img_ul_wrapper">
+                                                                                <ul class="img_ul sumnail-layout">
+                                                                                    <!--이미지 들어가는 곳-->
+                                                                                </ul>
+                                                                            </div>
+                                                                        </section>
+                                                                        <div class="body-main-box-in-box-2">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="box-line"></div>
+                                                                <div class="editor-button-line">
+                                                                    <div class="button-line"></div>
+                                                                    <button type="button" class="modify-button">
+                                                                        <div class="save-button-box">
+                                                                            <div class="save-button-box-div"></div>
+                                                                            <span
+                                                                                    class="save-button-span">수정하기</span>
+                                                                            <div class="save-button-box-div"></div>
+                                                                        </div>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="body-line"></div>
+            </div>
+        </div>
+    </section>
+    <th:block th:replace="~{main/footer :: footer}"></th:block>
+</div>
+<!-- 잠깐 나왓다 사라지는 알람창 -->
+<div class="alert-modal-display">
+    <div class="diary-modal">
+        <div class="alert-modal-box" style="width: 500px;">
+            <div style="text-align: center;">
+                <div style="margin-top: 12px;">
+                    <span class="alert"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script src="/js/main/header.js"></script>
+<script th:inline="javascript">
+    let member = [[${session.member}]];
+    let memberDTO = [[${memberDTO}]];
+    let memberFile = null;
+
+    if(memberDTO){
+        memberFile = memberDTO.fileDTO;
+    }
+
+    let suggestDTO = [[${suggestDTO}]];
+    let fileDTOS = null;
+    if(suggestDTO == null || suggestDTO == undefined){
+    }else {
+        fileDTOS = suggestDTO.fileDTOS;
+    }
+
+    $(".return-detail").click(() => {
+        location.href= '/board/suggest/detail/' + suggestDTO.id;
+    });
+
+</script>
+<script src="/js/board/suggest/write.js"></script>
+<script src="/js/board/suggest/modify.js"></script>
+<script src="/js/main/header.js"></script>
+</html>

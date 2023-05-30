@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div style="width: 500px; height: 500px;">
+            <canvas id="myChart"></canvas>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    $.ajax({
+        url: 'http://openapi.seoul.go.kr:8088/7767787441646e7235357043646163/xml/F60OpenTbl/1/200/',
+        type: 'GET',
+        dataType: 'xml',
+        success: function(data) {
+            var xmlData = $(data);
+            var rows = xmlData.find('row');
+
+            var labels = []; // X축 레이블
+            var dataValues = []; // 데이터 값
+
+            // 각 row 요소를 순회하며 데이터 추출
+            rows.each(function(index, row) {
+                var lcLsfNm = $(row).find('STAT_YEAR').text();
+                var m1 = $(row).find('M3').text();
+
+                // 추출한 데이터를 배열에 추가
+                    labels.push(lcLsfNm);
+                    dataValues.push(parseFloat(m1));
+            });
+
+            // 차트 생성
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var chart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels.reverse(),
+                    datasets: [{
+                        label: '서울시 보건예산 대비 정신건강증진예산',
+                        data: dataValues.reverse(),
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        },
+        error: function(error) {
+            console.log(error.responseText);
+        }
+    });
+</script>
+</html>

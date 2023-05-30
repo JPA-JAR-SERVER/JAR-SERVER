@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마이페이지-사이드</title>
+    <link rel="icon" href="/image/logo/favicon.png">
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/mypage/user-header.css">
+</head>
+<body>
+    <div th:fragment="user-header">
+        <div class="mypage-wrap">
+            <header class="mypage-header">
+                <div class="mypage-header-layout">
+                    <div class="mypage-header-profile-box">
+                        <a th:href="@{/mypage/modify}">
+                            <div class="profile-name">
+                                <p th:text="${memberDTO.memberNickname}"></p>
+                                <div class="my-badge-image-box">
+                                    <th:block th:if="${#strings.equals(memberDTO.badgeType,'ONE')}">
+                                        <img class="my-badge" src="/image/mypage/trophy_1.png">
+                                    </th:block>
+                                    <th:block th:if="${#strings.equals(memberDTO.badgeType,'TWO')}">
+                                        <img class="my-badge" src="/image/mypage/trophy_2.png">
+                                    </th:block>
+                                    <th:block th:if="${#strings.equals(memberDTO.badgeType,'THREE')}">
+                                        <img class="my-badge" src="/image/mypage/trophy_3.png">
+                                    </th:block>
+                                    <th:block th:if="${#strings.equals(memberDTO.badgeType,'ZERO')}">
+                                        <img class="my-badge" src="/image/mypage/trophy_1_5.png">
+                                    </th:block>
+                                </div>
+                            </div>
+                            <div class="memberEmail-box normal-font">
+                                <span th:text="${memberDTO.memberEmail}"></span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M8.5 18.5l6-6.5-6-6.5L10 4l7.5 8-7.5 8-1.5-1.5z" fill="#a2a2a2"></path></svg>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="header-banner-box">
+                        <a href="javascript:void(0)">
+                            <div class="header-image-box">
+                                <div class="header-flex-box">
+                                    <div class="mobile-version-image-box">
+                                        <picture class="mobile-version-image">
+                                            <img src="https://cdn.class101.net/images/65c02bbd-5fc1-466f-93e3-629d6f396dbe">
+                                        </picture>
+                                    </div>
+                                    <div class="mypage-banner-image-box">
+                                        <picture class="mypage-banner-image">
+                                            <img src="../../image/mypage/bird.png" style="filter: invert(100%);">
+                                        </picture>
+                                    </div>
+                                    <div class="mypage-banner-text-box">
+                                        <div class="mypage-banner-main-text">
+                                            <h3>새로운 도전, 챌린지 시작하기</h3>
+                                        </div>
+                                        <div class="mypage-banner-sub-text">
+                                            <span>자유롭게 원하는 챌린지를 시작해보세요.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+</html>

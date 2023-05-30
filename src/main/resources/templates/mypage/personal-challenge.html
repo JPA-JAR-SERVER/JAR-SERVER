@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>개인 챌린지 목록</title>
+    <link rel="stylesheet" href="/css/mypage/side-menu.css">
+    <link rel="stylesheet" href="/css/mypage/user-header.css">
+    <link rel="stylesheet" href="/css/main/header.css">
+    <link rel="stylesheet" href="/css/main/footer.css">
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="icon" href="/image/logo/favicon.png">
+    <link rel="stylesheet" href="/css/mypage/challeng-list.css">
+</head>
+
+<body>
+    <div>
+        <!-- main/header.html -->
+        <div id="header" style="position: sticky; top: 0; z-index: 100;" th:insert="~{main/header :: header}"></div>
+
+        <div>
+            <div class="mypage-all-wrap">
+                <!-- user-header.html -->
+                <div id="mypage-header" th:replace="~{mypage/user-header :: user-header}"></div>
+
+                <div class="mypage-content-wrap">
+                    <!-- side-menu.html -->
+                    <div id="side-menu" th:replace="~{mypage/side-menu :: sidebar}"></div>
+
+                    <div class="mypage-content-container">
+                        <div class="mypage-content-box">
+                            <section>
+                                <div class="content-title-box">
+                                    <div class="flex-center">
+                                        <h1 class="content-list-title">내 개인 챌린지</h1>
+                                    </div>
+                                    <div class="organize-button-box">
+                                        <div class="organize-button-layout">
+                                            <button class="btn proceed-challenge status-active" type="button">진행 중인 챌린지</button>
+                                            <button class="btn end-challenge" type="button">완료한 챌린지</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="no-content-box">
+                                    <div class="no-content-layout">
+                                        <p>현재 도전 중인 챌린지가 없습니다.</p>
+                                    </div>
+                                </div> -->
+                                <div>
+                                    <div style="height:auto; overflow:auto">
+                                        <div style="overflow:hidden">
+                                            <ul class="content-ul">
+                                                <!-- 여기서 부터 -->
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                            <div class="paging-box">
+                                <div class="paging-layout">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="footer" th:insert="~{main/footer :: footer}"></div>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script th:inline="javascript">
+    let member = [[${session.member}]];
+    let memberFile = [[${memberDTO.fileDTO}]];
+    let badgeType = [[${session.member.badgeType}]];
+    let memberId;
+    if (member) {
+        memberId = member.id;
+    }
+</script>
+<script>
+    let $ul = $(".content-ul");
+    let page = 0;
+    let challengeStatus = "NONPARTICIPANT";
+
+    let personalChallengeListService = (function(){
+
+        function list(data, callback) {
+            $.ajax({
+                url : '/mypage/challenge-content',
+                type : 'get',
+                data : data,
+                success : function (list) {
+                    if(callback){
+                        callback(list);
+                    }
+                }
+            })
+        }
+        return {
+            list : list,
+        }
+    })();
+    getList(challengeStatus, page);
+
+    // 진행중인 챌린지 클릭
+    $(".proceed-challenge").click(() => {
+        page = 0;
+        challengeStatus = "NONPARTICIPANT";
+        getNewList(challengeStatus, page);
+    });
+
+    // 완료된 챌린지
+    $(".end-challenge").click(() => {
+        page = 0;
+        challengeStatus = "PARTICIPATION";
+        getNewList(challengeStatus, page);
+    });
+
+    // 페이지 번호
+    $(".paging-layout").on("click", "a", function(e) {
+        e.preventDefault();
+        $ul.empty();
+        const targetPage = $(this).text();
+
+        if ($(this).hasClass("arrow")) {
+            // 화살표 클릭 시 이전 페이지 또는 다음 페이지로 이동
+            if ($(this).attr("id") === "prev") {
+                page--;
+            } else if ($(this).attr("id") === "next") {
+                page++;
+            }
+        } else {
+            // 페이지 번호 클릭 시 해당 페이지로 이동
+            page = parseInt(targetPage) - 1;
+        }
+
+        getList(challengeStatus, page);
+    });
+
+    $(".btn").each((i, e) => {
+        $(e).click(() => {
+            if(!$(e).hasClass("status-active")){
+                $(".btn").removeClass("status-active");
+                $(e).addClass("status-active");
+            }
+        });
+    });
+
+
+    //    ==============================================================================
+    function displayPagination(totalPages) {
+        const $pagination = $(".paging-layout");
+        $pagination.empty();
+
+        if (page > 0) {
+            $pagination.append("<a href='#' class='arrow' id='prev'><img class='prev'  src='/image/mypage/arrow.png'></a>");
+        }
+
+        for (let i = 1; i <= totalPages; i++) {
+            if (i === page + 1) {
+                // 현재 페이지를 텍스트로 표시
+                $pagination.append(
+                    "<div class='paging-border-none paging-active'><span class='page'>" + i + "</span></div>"
+                );
+            } else {
+                // 다른 페이지는 a 태그로 표시
+                $pagination.append("<div class='paging-border-none'><a href='#' class='page'>" + i + "</a></div>");
+            }
+        }
+        if (page < totalPages - 1) {
+            $pagination.append("<a href='#' class='arrow' id='next'><img class='next' src='/image/mypage/arrow.png'></a>");
+        }
+    }
+
+    function listText(list){
+        let personalChallengeDTOS = list.content;
+        let text = '';
+        personalChallengeDTOS.forEach((personalChallengeDTO, i) => {
+            text += `
+                                        <li class="content-li">
+                                                    <div class="content-flex">
+                                                        <a href="/board/challenge/personal/detail/${personalChallengeDTO.id}">
+                                                            <div class="content-box">
+                                                                <div class="content-image-box">
+                                                                    <span class="content-image-layout">
+                                                                        <picture>
+                    `;
+
+            if(personalChallengeDTO.challengeDTO.fileDTOS.length == 0 || personalChallengeDTO.challengeDTO.fileDTOS == null || personalChallengeDTO.challengeDTO.fileDTOS == undefined){
+                text += `<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/480px-No_image_available.svg.png" class="no-image">`;
+            }else {
+                for (let  j= 0; j < personalChallengeDTO.challengeDTO.fileDTOS.length; j++){
+                    if(personalChallengeDTO.challengeDTO.fileDTOS[j].fileType === "REPRESENTATIVE"){
+                        text += `<img class="list-image"  src="/file/display?fileName=${personalChallengeDTO.challengeDTO.fileDTOS[j].filePath}/${personalChallengeDTO.challengeDTO.fileDTOS[j].fileUuid}_${personalChallengeDTO.challengeDTO.fileDTOS[j].fileOriginalName}">`;
+                    }
+                }
+            }
+            text +=  `                                                    </picture>
+                                                                    </span>
+                                                                </div>
+                                                                <div class="content-title">${personalChallengeDTO.challengeDTO.boardTitle}</div>
+                                                                <div class="content2">${personalChallengeDTO.challengeDTO.boardContent}</div>
+                                                                <div class="liked-box">
+                                                                    <div class="between">
+                                                                        <div class="flex">
+                                                                            <div class="liked-layout">
+                                                                                <div class="icon-box">
+                                                                                    <img src="/image/board/human-icon.png"class="human-icon">
+                                                                                </div>
+                                                                                <p class="like-count">${personalChallengeDTO.attendCount}</p>
+                                                                            </div>
+                                                                            <div class="liked-layout">
+                                                                                <div class="icon-box">
+                                                                                    <img src="/image/board/reply-icon.png" style="margin-top: 1px;" class="reply-icon">
+                                                                                </div>
+                                                                                <p class="reply-count">${personalChallengeDTO.replyCount}</p>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div>
+                                                                       `;
+
+            if(personalChallengeDTO.challengeAttendStatus == 'NONPARTICIPANT'){
+                text += `<p class="proceed-status no-proceed-status">진행 중</p>`;
+            }else {
+                text += `<p class="proceed-status" style="color:#39f;">도전 완료</p>`;
+            }
+
+           text += `                                                            </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                </li>
+
+            `;
+        });
+        return text;
+    }
+
+    function getList(challengeStatus, page){
+        personalChallengeListService.list({
+            challengeStatus : challengeStatus,
+            memberId : memberId,
+            page : page
+        }, function(list){
+            $ul.append(listText(list));
+            displayPagination(list.totalPages);
+        });
+    }
+
+    function getNewList(challengeStatus, page){
+        personalChallengeListService.list({
+            challengeStatus : challengeStatus,
+            memberId : memberId,
+            page : page
+        }, function(list){
+            $ul.html(listText(list));
+            displayPagination(list.totalPages);
+        });
+    }
+</script>
+<script>
+    const $page = $(".paging-border-none");
+
+    $page.each((i, e) => {
+        $(e).click(() => {
+            $page.removeClass("paging-active");
+            $(e).addClass("paging-active");
+        });
+    });
+</script>
+<script src="/js/main/header.js"></script>
+</html>

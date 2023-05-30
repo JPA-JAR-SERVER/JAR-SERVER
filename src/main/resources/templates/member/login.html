@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자르-로그인</title>
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/login/login_OAuth.css">
+    <link rel="stylesheet" href="/css/login/login.css">
+    <link rel="icon" href="/image/logo/favicon.png">
+</head>
+<body>
+    <div>
+        <!-- 백그라운드 이미지 넣는곳 -->
+        <!-- <div>
+            <div>
+                <picture>
+                    <img style="color: black; background-color: black;">
+                </picture>
+            </div>
+        </div> -->
+        <div class="alert-modal-display">
+            <div class="diary-modal">
+                <div class="alert-modal-box" style="width: 500px;">
+                    <div style="text-align: center;">
+                        <div style="margin-top: 12px;">
+                            <span class="alert"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="all_wrap">
+            <div class="all_wrap_div">
+                <header class="header">
+                    <div class="header_div">
+                        <div class="class101_outside">
+                            <a onclick="location.href='/main/'">
+                                <div class="class101_inside">
+                                    <img style="width: 90px;" src="/image/logo/logo.png">
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </header>
+            </div>
+            <div class="middle_wrap">
+                <div class="middle_wrap_div">
+                    <div class="login_box">
+                        <div class="login_box_div">
+                            <div class="login">
+                                <h3 class="login_h3">로그인</h3>
+                            </div>
+                            <div class="gap"></div>
+                            <div class="kakao_other">
+                                <div class="login">
+                                    <div class="login">
+                                        <form style="width: auto; height: auto;" th:action="@{/member/login}" name="login" method="post">
+                                            <div class="form_div">
+                                                <label class="form_div_label">
+                                                    <div class="login">
+                                                        <p class="email_pw">이메일</p>
+                                                        <div class="email_pw_gap"></div>
+                                                        <div class="login">
+                                                            <input name="memberEmail" type="email" placeholder="example@naver.com">
+                                                            <div style="height: 4px;"></div>
+                                                            <div class="login">
+                                                                <p id="red_email" class="waring_email">이메일을 입력해주세요.</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </label>
+                                                <div class="hei_gap"></div>
+                                                <label class="form_div_label">
+                                                    <div class="login">
+                                                        <p class="email_pw">비밀번호</p>
+                                                        <div class="email_pw_gap"></div>
+                                                        <div class="login">
+                                                            <div class="password_box">
+                                                                <input placeholder="********" name="memberPassword" type="password">
+                                                                <div class="eye_wrap">
+                                                                    <span class="hide span_div">
+                                                                        <img id="eye_close" class="eye" src="/image/login/eyes-close.png">
+                                                                        <img id="eye_open" style="display: none;" class="eye" src="/image/login/eyes_open.png">
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                            <div style="height: 4px;"></div>
+                                                            <div class="login">
+                                                                <p id="red_password" class="waring_email">비밀번호를 입력해주세요.</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                            <div class="forget_pw_wrap">
+                                                <a class="sign_in_a" onclick="location.href='/member/password'">
+                                                    <p class="forget_pw_text">비밀번호를 잊으셨나요?</p>
+                                                </a>
+                                            </div>
+                                            <button type="submit" class="login_btn">
+                                                <div class="login_btn_div">
+                                                    <div class="wid_flex_four"></div>
+                                                    <span class="two_span">로그인</span>
+                                                    <div class="wid_flex_four"></div>
+                                                </div>
+                                            </button>
+                                        </form>
+                                    </div>
+                                    <div class="login_gap"></div>
+                                    <div class="login"></div>
+                                    <div class="login">
+                                        <button class="kakao_btn" onclick="location.href='/oauth2/authorization/kakao'">
+                                            <div class="login_btn_div">
+                                                <div class="wid_hei_second"></div>
+                                                <span style="width: 20px; height: 20px; display: block;">
+                                                    <svg viewBox="0 0 24 24" class="kakao_btn_svg">
+                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9997 2.5C6.24348 2.5 1 6.32322 1 11.0393c0 2.9316 1.90428 5.5179 4.80469 7.0555l-1.22042 4.4795c-.10756.3967.34284.7126.68935.4828l5.34918-3.5482c.4516.044.9106.0691 1.3769.0691C18.0755 19.578 23 15.7548 23 11.0393 23 6.32322 18.0755 2.5 11.9997 2.5Z" class="kakao_btn_svg_path"></path>
+                                                    </svg>
+                                                </span>
+                                                <div class="wid_hei_second"></div>
+                                                <div class="wid_hei_second"></div>
+                                                <div class="wid_hei_four"></div>
+                                                <span class="kakao_text">
+                                                    <p class="kakao_text_p">카카오로 3초 만에 시작하기</p>
+                                                </span>
+                                                <div class="wid_hei_four"></div>
+                                            </div>
+                                        </button>
+                                        <div class="hei_gap"></div>
+                                        <button class="kakao_btn" onclick="location.href='/oauth2/authorization/naver'">
+                                            <div class="login_btn_div">
+                                                <div class="wid_hei_second"></div>
+                                                <span style="width: 20px; height: 20px; display: block;">
+                                                    <svg viewBox="0 0 24 24" class="kakao_btn_svg">
+                                                        <path d="M15.3858 12.67L8.34138 2.57471H2.5V21.4259H8.61423V11.3306L15.6586 21.4259H21.5V2.57471H15.3858V12.67Z" class="naver_path"></path>
+                                                    </svg>
+                                                </span>
+                                                <div class="wid_hei_second"></div>
+                                                <div class="wid_hei_second"></div>
+                                                <div class="wid_hei_four"></div>
+                                                <span class="kakao_text">
+                                                    <p class="kakao_text_p">네이버로 시작하기</p>
+                                                </span>
+                                                <div class="wid_hei_four"></div>
+                                            </div>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="gap"></div>
+                            <div class="sign_in_login">
+                                <a class="sign_in_a" onclick="location.href='/member/join'">
+                                    <div class="sign_in_a_div_login">
+                                        <h6 class="sign_in_left">아직 Jar 회원이 아니신가요?</h6>
+                                        <div style="width: 8px;"></div>
+                                        <h6 class="sign_in_right">회원가입</h6>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="media_sign"></div>
+        </div>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+const $alertModal = $(".alert-modal-display");
+let login_btn = document.getElementsByClassName('login_btn')[0];
+let errorMsg = "아이디 또는 비밀번호를 다시 확인하세요.";
+let emailInput = document.querySelector('input[name=email]');
+
+// 로그인 실패시 나오는 모달창
+// login_btn.addEventListener("click", function () {
+//     alertModal(errorMsg);
+// });
+
+// function alertModal(errorMsg) {
+//     $(".alert").text(errorMsg);
+//     $alertModal.show();
+//     setTimeout(function () {
+//         $alertModal.hide();
+//     }, 2000);
+// }
+// 로그인 실패시 나오는 빨간줄
+//     $(".login_btn").click(function() {
+//         $("#red_email").css('display', 'block');
+//         $("input[name='memberEamil']").css('border-color', 'rgb(243, 33, 59)');
+//         $("#red_password").css('display', 'block');
+//         $("input[name='memberPassword']").css('border-color', 'rgb(243, 33, 59)');
+//     });
+//
+//     $("input[name='memberEmail']").keyup(function() {
+//         $("#red_email").css('display', 'none');
+//         $("input[name='memberEmail']").css('border-color', 'rgba(0, 0, 0, 0.15)');
+//     });
+//     $("input[name='memberPassword']").keyup(function() {
+//         $("#red_password").css('display', 'none');
+//         $("input[name='memberPassword']").css('border-color', 'rgba(0, 0, 0, 0.15)');
+//     });
+
+
+// 비밀번호 눈표시 JS
+
+let userPassword = $("input[name=memberPassword]");
+
+$(".hide").click(function(){
+    if(userPassword.attr("type") == "password"){
+        $("#eye_close").css('display', 'none');
+        $("#eye_open").css('display', 'block');
+        userPassword.attr("type","text");
+    }else if(userPassword.attr("type") == "text"){
+        $("#eye_close").css('display', 'block');
+        $("#eye_open").css('display', 'none');
+        userPassword.attr("type","password");
+    }
+});
+
+
+
+
+
+
+
+
+</script>
+
+
+</html>

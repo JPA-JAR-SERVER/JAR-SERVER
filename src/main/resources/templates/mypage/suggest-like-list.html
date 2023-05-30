@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마이페이지-제안 게시물 좋아요</title>
+    <link rel="stylesheet" href="/css/mypage/like-list.css">
+    <link rel="stylesheet" href="/css/mypage/side-menu.css">
+    <link rel="stylesheet" href="/css/mypage/user-header.css">
+    <link rel="stylesheet" href="/css/main/header.css">
+    <link rel="stylesheet" href="/css/main/footer.css">
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="icon" href="/image/logo/favicon.png">
+</head>
+<body>
+    <div>
+        <!-- main/header.html -->
+        <div id="header" style="position: sticky; top: 0; z-index: 100;" th:insert="~{main/header :: header}"></div>
+
+        <div>
+            <div class="mypage-all-wrap">
+                <!-- user-header.html -->
+                <div id="mypage-header" th:replace="~{mypage/user-header :: user-header}"></div>
+
+                <div class="mypage-content-wrap">
+
+                    <!-- side-menu.html -->
+                    <div id="side-menu" th:replace="~{mypage/side-menu ::sidebar}"></div>
+                    
+                    <div class="mypage-content-container">
+                        <div class="mypage-content-box">
+                            <section>
+                                <div class="content-title-box">
+                                    <div class="flex-center">
+                                        <h1 class="content-list-title">내가 좋아요한 제안 게시물</h1>
+                                    </div>
+                                </div>
+                                <!-- <div class="no-content-box">
+                                    <div class="no-content-layout">
+                                        <p>좋아요한 게시물이 없습니다.</p>
+                                    </div>
+                                </div> -->
+                                <div class="list-margin">
+                                    <div class="list-box">
+                                        <ul class="content-ul">
+
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </section>
+                            <div class="paging-box">
+                                <div class="paging-layout">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- main/footer.html -->
+        <div id="footer" th:insert="~{main/footer :: footer}"></div>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script th:inline="javascript">
+    let member = [[${session.member}]];
+    let memberFile = [[${memberDTO.fileDTO}]];
+    let badgeType = [[${session.member.badgeType}]];
+    let memberId;
+    if (member) {
+        memberId = member.id;
+    }
+</script>
+<script src="/js/mypage/suggest-like-list.js"></script>
+<script src="/js/board/suggest/like-service.js"></script>
+<script>
+    // 좋아요 버튼
+    $ul.on("click","button.heart-layout",function(e){
+        let boardId = e.currentTarget.id.replaceAll("heart","");
+        let ul = $(e.currentTarget).parent().parent().parent().parent().parent();
+        let li = $(e.currentTarget).parent().parent().parent().parent();
+        let i = ul.find("li").index(li);
+
+
+        let likeDTO = new Object();
+        likeDTO.memberId = memberId;
+        likeDTO.boardId = boardId;
+
+        likeService.heartCheck(likeDTO, function(result){
+            if(result){
+                // 좋아요 ++
+                likeService.heartUp(likeDTO, function(){
+                    $($(".no-heart")[i]).addClass("heart-active");
+                    $($(".heart-up")[i]).show();
+                    $($(".no-heart")[i]).hide();
+                    likeService.count({boardId: boardId}, function (result) {
+                        $($(".like-count")[i]).text(result);
+                    });
+                });
+            } else {
+                // 좋아요 --
+                likeService.heartDown(likeDTO, function(){
+                    $($(".heart-up")[i]).hide();
+                    $($(".no-heart")[i]).show();
+                    $($(".no-heart")[i]).removeClass("heart-active");
+                    likeService.count({boardId: boardId}, function (result) {
+                        $($(".like-count")[i]).text(result);
+                    })
+                });
+            }
+        });
+
+    });
+
+</script>
+<script src="/js/main/header.js"></script>
+</html>
